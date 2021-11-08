@@ -6,4 +6,5 @@ import co.edu.unbosque.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
+	Usuario findByIdClave(String nombre,String clave);
 }
