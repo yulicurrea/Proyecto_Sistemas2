@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.repository.UsuarioRepository;
@@ -16,11 +15,11 @@ import co.edu.unbosque.repository.UsuarioRepository;
 @Component
 public class UsuarioService implements IUsuarioService<Usuario> {
 
-	@Resource
+	@Autowired
 	private UsuarioRepository personaResporitory;
 	private UsuarioService usu;
 
-	@Autowired
+	
 	public UsuarioService(UsuarioRepository personaResporitory) {
 
 		this.personaResporitory =  personaResporitory;
@@ -54,7 +53,7 @@ public class UsuarioService implements IUsuarioService<Usuario> {
 
 	@Transactional
 	public Usuario encotrarUsuarioClave(String usuario, String password) {
-		Usuario user = personaResporitory.findByIdClave(usuario, password);
+		Usuario user = usu.findByIdClave(usuario, password);
 		return user;
 	}
 
