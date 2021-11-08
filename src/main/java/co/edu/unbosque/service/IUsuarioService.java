@@ -16,6 +16,6 @@ public interface IUsuarioService<U> {
 	public Optional<U> findById(Long id);
 	public U guardarUsuario(U usuario);
 	public U encotrarUsuarioClave(String usuario,String password);
-	public U findByIdClave(String nombre,String clave);
+	public Usuario findByIdClave(String nombre,String clave);
 
 }

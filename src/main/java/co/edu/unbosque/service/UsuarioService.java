@@ -17,7 +17,8 @@ public class UsuarioService implements IUsuarioService<Usuario> {
 
 	@Autowired
 	private UsuarioRepository personaResporitory;
-	private UsuarioService usu;
+	@SuppressWarnings("rawtypes")
+	private IUsuarioService usu;
 
 	
 	public UsuarioService(UsuarioRepository personaResporitory) {
@@ -53,7 +54,8 @@ public class UsuarioService implements IUsuarioService<Usuario> {
 
 	@Transactional
 	public Usuario encotrarUsuarioClave(String usuario, String password) {
-		Usuario user = usu.findByIdClave(usuario, password);
+		Usuario user;
+		user = (Usuario) usu.findByIdClave(usuario, password);
 		return user;
 	}
 

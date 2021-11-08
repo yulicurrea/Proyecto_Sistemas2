@@ -60,9 +60,9 @@ public class UsuarioREST {
 	@PostMapping("login")
 	public Usuario loginUsuario(@RequestBody Usuario usuario) throws Exception {
 
-		String usu = usuario.getNombre();
-		String clave = usuario.getClave();
-		Usuario usuarioObj = null;
+		String usu = "carlos"; //usuario.getNombre();
+		String clave = "carlos"; //usuario.getClave();
+		Usuario usuarioObj = new Usuario();
 		if (usu != null && clave != null) {
 
 			usuarioObj = personaService.encotrarUsuarioClave(usu, clave);
