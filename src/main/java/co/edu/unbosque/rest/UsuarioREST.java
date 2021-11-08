@@ -25,6 +25,10 @@ public class UsuarioREST {
 	@Autowired
 	private UsuarioService personaService;
 
+	public UsuarioREST(UsuarioService personaService) {
+		this.personaService = personaService;
+	}
+
 	@PostMapping
 	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
 		Usuario temporal = personaService.create(persona);
