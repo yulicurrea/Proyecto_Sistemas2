@@ -2,6 +2,9 @@ package co.edu.unbosque.model;
 
 import java.util.Date;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.Table;
+
+import org.apache.commons.codec.binary.Hex;
 
 @Entity
 @Table(name = "usuario")
@@ -39,6 +44,7 @@ public class Usuario {
 		this.apellido = apellido;
 		this.rol = rol;
 		this.usuario = usuario;
+
 	}
 
 	public String getApellido() {
@@ -66,7 +72,12 @@ public class Usuario {
 	}
 
 	public void setClave(String clave) {
-		this.clave = clave;
+		try {
+			this.clave = sha1(clave);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public int getEdad() {
@@ -100,5 +111,11 @@ public class Usuario {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	
+
+	public static String sha1(String text) throws NoSuchAlgorithmException {
+		MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+		byte[] bytes = messageDigest.digest(text.getBytes());
+		return Hex.encodeHexString(bytes);
+	}
+
 }
