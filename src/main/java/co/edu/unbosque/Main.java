@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"co.edu.unbosque.service","co.edu.unbosque.rest"})
 public class Main {
 
 	public static void main(String[] args) {

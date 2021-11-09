@@ -1,68 +1,62 @@
 package co.edu.unbosque.service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.repository.UsuarioRepository;
 
 @Component
-public class UsuarioService implements IUsuarioService<Usuario> {
+@Service
+public class UsuarioService{
 
 	@Autowired
 	private UsuarioRepository personaResporitory;
-	@SuppressWarnings("rawtypes")
-	private IUsuarioService usu;
 
-	
+	public UsuarioService() {
+
+	}
+
 	public UsuarioService(UsuarioRepository personaResporitory) {
 
-		this.personaResporitory =  personaResporitory;
+		this.personaResporitory = personaResporitory;
 	}
-	
-	@Transactional
+
 	public Usuario create(Usuario persona) {
 		return personaResporitory.save(persona);
 	}
 
-	@Transactional
 	public List<Usuario> getAllPersonas() {
 		return personaResporitory.findAll();
 	}
 
-	@Transactional
 	public void delete(Usuario persona) {
 		personaResporitory.delete(persona);
 	}
 
-	@Transactional
 	public Optional<Usuario> findById(Long id) {
 		return personaResporitory.findById(id);
 	}
+	
+	public Usuario findUser(String usuario) {
+		return personaResporitory.findOneByusuario(usuario);
+	}
 
-	@Transactional
 	public Usuario guardarUsuario(Usuario usuario) {
 
-		return personaResporitory.save(usuario);
+		return personaResporitory.saveAndFlush(usuario);
 	}
 
-	@Transactional
-	public Usuario encotrarUsuarioClave(String usuario, String password) {
-		Usuario user;
-		user = (Usuario) usu.findByIdClave(usuario, password);
-		return user;
-	}
-
-	@Override
-	public Usuario findByIdClave(String nombre, String clave) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

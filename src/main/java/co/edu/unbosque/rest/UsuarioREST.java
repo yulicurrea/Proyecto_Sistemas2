@@ -23,10 +23,16 @@ import co.edu.unbosque.service.UsuarioService;
 public class UsuarioREST {
 
 	@Autowired
-	private UsuarioService personaService;
-
-	public UsuarioREST(UsuarioService personaService) {
+	private UsuarioService personaService = new UsuarioService();
+	
+	UsuarioREST(){
+		
+	}
+	
+	public UsuarioREST(UsuarioService personaService){
+		
 		this.personaService = personaService;
+		
 	}
 
 	@PostMapping
@@ -41,7 +47,7 @@ public class UsuarioREST {
 		}
 	}
 
-	@GetMapping
+	@PostMapping("listar")
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona() {
 		return ResponseEntity.ok(personaService.getAllPersonas());
 	}
@@ -52,28 +58,38 @@ public class UsuarioREST {
 		return ResponseEntity.ok().build();
 	}
 
+
 	@GetMapping(value = "{id}")
 	private ResponseEntity<Optional<Usuario>> listarPersonasPorID(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(personaService.findById(id));
 	}
-
+	
+	
+	 @GetMapping("")
+	    public String viewHomePage() {
+	        return "index";
+	    }
+	
+	
+	/*
 	@PostMapping("login")
-	public Usuario loginUsuario(@RequestBody Usuario usuario) throws Exception {
+	public Usuario loginUsuario(@RequestBody Usuario usu) throws Exception {
 
-		String usu = "carlos"; //usuario.getNombre();
-		String clave = "carlos"; //usuario.getClave();
-		Usuario usuarioObj = new Usuario();
-		if (usu != null && clave != null) {
+		Long id = (long) 12345;
+		String clave = usu.getClave();
+		Usuario usuario = new Usuario();
+		if (id != null) {
 
-			usuarioObj = personaService.encotrarUsuarioClave(usu, clave);
+			//usuario = personaService.encontrarUsuarioClave(id);
 
 		}
-		if (usuarioObj == null) {
+		if (usuario == null) {
 
 			throw new Exception("Credenciales invalidas");
 		}
 
-		return usuarioObj;
+		return usuario;
 	}
-
+	*/
+   
 }

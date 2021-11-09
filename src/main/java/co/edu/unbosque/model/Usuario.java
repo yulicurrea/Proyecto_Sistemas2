@@ -17,6 +17,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name = "usuario", nullable = false, length = 15)
+	private String usuario;
 
 	@Column(name = "clave", nullable = false, length = 15)
 	private String clave;
@@ -40,9 +43,10 @@ public class Usuario {
 
 	}
 
-	public Usuario(long id, String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol) {
+	public Usuario(long id, String usuario,String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol) {
 		super();
 		this.id = id;
+		this.usuario = usuario;
 		this.clave = clave;
 		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
@@ -65,6 +69,22 @@ public class Usuario {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getNombre() {
