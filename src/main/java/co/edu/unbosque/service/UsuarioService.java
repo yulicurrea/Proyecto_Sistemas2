@@ -25,8 +25,11 @@ public class UsuarioService {
 		return personaResporitory.findAll();
 	}
 	
-	public void delete (Usuario persona) {
-		personaResporitory.delete(persona);
+	public void deleteById (Long id) {
+		personaResporitory.deleteById(id);
+	}
+	public void delete (Usuario entity) {
+		personaResporitory.delete(entity);
 	}
 	
 	public Optional<Usuario> findById (Long id) {

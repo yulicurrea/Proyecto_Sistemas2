@@ -44,11 +44,13 @@ public class UsuarioREST {
 		return ResponseEntity.ok(personaService.getAllPersonas());
 	}
 	
-	@DeleteMapping
-	private ResponseEntity<Void> eliminarPersona (@RequestBody Usuario persona){
-		personaService.delete(persona);
-		return ResponseEntity.ok().build();
+	@DeleteMapping(value = "delete/{id}")
+	private ResponseEntity<Boolean>eliminarPersona(@PathVariable ("id") Long id){
+		personaService.deleteById(id);
+		return ResponseEntity.ok(!(personaService.findById(id)!=null));
+	
 	}
+
 	
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Optional<Usuario>> listarPersonasPorID (@PathVariable ("id") Long id){
