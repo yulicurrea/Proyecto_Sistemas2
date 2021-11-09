@@ -13,6 +13,5 @@ import co.edu.unbosque.model.Usuario;
 @EnableJpaRepositories
 public interface UsuarioRepository extends JpaRepository<Usuario,Serializable>{
 
-	//@Query("SELECT u FROM usuario u WHERE u.usuario = ?1")
 	public Usuario findOneByusuario(String usuario);
 }

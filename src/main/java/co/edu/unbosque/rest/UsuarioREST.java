@@ -1,12 +1,19 @@
 package co.edu.unbosque.rest;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.jni.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +31,8 @@ public class UsuarioREST {
 
 	@Autowired
 	private UsuarioService personaService = new UsuarioService();
+	
+	public static final Logger logger = LoggerFactory.getLogger(UsuarioREST.class);
 	
 	UsuarioREST(){
 		
@@ -64,32 +73,38 @@ public class UsuarioREST {
 		return ResponseEntity.ok(personaService.findById(id));
 	}
 	
+	@GetMapping("")
+    public String viewHomePage() {
+        return "index";
+    }
 	
-	 @GetMapping("")
-	    public String viewHomePage() {
-	        return "index";
-	    }
-	
+	@GetMapping("/register")
+	public String showRegistrationForm(Model model) {
+	    model.addAttribute("user", new User());
+	     
+	    return "signup_form";
+	}
 	
 	/*
-	@PostMapping("login")
-	public Usuario loginUsuario(@RequestBody Usuario usu) throws Exception {
-
-		Long id = (long) 12345;
-		String clave = usu.getClave();
-		Usuario usuario = new Usuario();
-		if (id != null) {
-
-			//usuario = personaService.encontrarUsuarioClave(id);
-
-		}
-		if (usuario == null) {
-
-			throw new Exception("Credenciales invalidas");
-		}
-
-		return usuario;
+	@PostMapping("/process_register")
+	public String processRegister(Usuario user) {
+	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String encodedPassword = passwordEncoder.encode(user.getClave());
+	    user.setClave(encodedPassword);
+	     
+	    personaService.guardarUsuario(user);
+	     
+	    return "register_success";
 	}
 	*/
-   
+	
+	/*
+	@CrossOrigin
+	@RequestMapping("/login")
+	public Principal user(Principal principal) {
+		logger.info("user logged "+principal);
+		return principal;
+	}
+	*/
+	
 }

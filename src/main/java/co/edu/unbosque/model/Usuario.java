@@ -10,8 +10,11 @@ import javax.persistence.Id;
 
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+
 @Entity
 @Table(name = "usuario")
+@Scope("session")
 public class Usuario {
 
 	@Id
