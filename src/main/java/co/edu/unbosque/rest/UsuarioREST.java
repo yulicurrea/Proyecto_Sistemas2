@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.service.UsuarioService;
 
-@RestController
+@Controller
 @RequestMapping("/api/user/")
 public class UsuarioREST {
 
@@ -43,6 +44,11 @@ public class UsuarioREST {
 		this.personaService = personaService;
 		
 	}
+	
+	@GetMapping("index")
+    public String viewHomePage() {
+        return "index";
+    }
 
 	@PostMapping
 	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
@@ -73,10 +79,7 @@ public class UsuarioREST {
 		return ResponseEntity.ok(personaService.findById(id));
 	}
 	
-	@GetMapping("")
-    public String viewHomePage() {
-        return "index";
-    }
+	
 	
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
