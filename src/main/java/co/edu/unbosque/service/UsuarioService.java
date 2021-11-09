@@ -29,6 +29,11 @@ public class UsuarioService {
 		personaResporitory.delete(persona);
 	}
 	
+	public void deleteById (Long id) {
+		personaResporitory.deleteById(id);
+	}
+
+	
 	public Optional<Usuario> findById (Long id) {
 		return personaResporitory.findById(id);
 	}
