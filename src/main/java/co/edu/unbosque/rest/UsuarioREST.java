@@ -45,7 +45,7 @@ public class UsuarioREST {
 		
 	}
 	
-	@PostMapping("guardar")
+	@PostMapping
 	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
 		Usuario temporal = personaService.create(persona);
 
@@ -57,7 +57,7 @@ public class UsuarioREST {
 		}
 	}
 
-	@PostMapping("listar")
+	@PostMapping
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona() {
 		return ResponseEntity.ok(personaService.getAllPersonas());
 	}
