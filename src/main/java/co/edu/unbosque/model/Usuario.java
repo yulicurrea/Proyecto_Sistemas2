@@ -1,6 +1,5 @@
 package co.edu.unbosque.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -14,21 +13,13 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Table(name = "usuario")
 @Scope("session")
 public class Usuario implements UserDetails {
 
-	public static enum Role{ USER }
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -36,7 +27,7 @@ public class Usuario implements UserDetails {
 	@Column(name = "usuario", nullable = false, length = 15)
 	private String usuario;
 
-	@JsonProperty(access = Access.WRITE_ONLY)
+	@Column(name = "clave", nullable = false, length = 15)
 	private String clave;
 
 	@Column(name = "edad", nullable = false, length = 3)
@@ -138,58 +129,46 @@ public class Usuario implements UserDetails {
 		this.rol = rol;
 	}
 
-	@JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(rol));
-		return authorities;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return clave;
+		return null;
 	}
 
-	
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return usuario;
+		return null;
 	}
 
-	@JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@JsonIgnore
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
-	}
-	
-	public String toString() {
-		return "User [id=" + id + ", username=" + usuario + ", password=" + clave + ", role=" + rol +
-				 ",]";
 	}
 
 }
