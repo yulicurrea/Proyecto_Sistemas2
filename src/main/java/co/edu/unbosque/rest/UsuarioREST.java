@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Usuario;
@@ -75,8 +76,22 @@ public class UsuarioREST {
 	}
 
 	
+		@CrossOrigin
+		@RequestMapping(value = "/register", method = RequestMethod.POST)
+		public ResponseEntity<?> createUser(@RequestBody Usuario usu) {
+			if (personaService.findUser(usu.getNombre()) != null) {
+				logger.error("el nombre de usuario ya existe" + usu.getNombre());
+				return new ResponseEntity<Object>(
+						new Error("El usuario con el nombre de usuario " + usu.getNombre() + "ya existe "),
+						HttpStatus.CONFLICT);
+			}
+			usu.setRol("USER");
+			
+			return new ResponseEntity<Usuario>(personaService.guardarUsuario(usu), HttpStatus.CREATED);
+		}
+	
 	@CrossOrigin
-	@GetMapping("login")
+	@RequestMapping("login")
 	public Principal user(Principal principal) {
 		logger.info("user logged "+principal);
 		return principal;

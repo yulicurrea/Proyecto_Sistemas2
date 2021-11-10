@@ -17,12 +17,7 @@ public class UsuarioDetailsService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = new Usuario();
-		usuario = usuarioService.findUser(username);
-		if(usuario == null) {
-			
-			throw new UsernameNotFoundException("El usuario no existe");
-		}
+		Usuario usuario = usuarioService.findUser(username);
 		return usuario;
 	}
 	
