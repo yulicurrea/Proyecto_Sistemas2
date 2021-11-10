@@ -37,7 +37,7 @@ public class Usuario implements UserDetails {
 	private String clave;
 
 	@Column(name = "edad", nullable = false, length = 3)
-	private int edad;
+	private Integer edad;
 
 	@Column(name = "fecha_nacimiento", nullable = false, length = 11)
 	private Date fechaNacimiento;
@@ -55,8 +55,8 @@ public class Usuario implements UserDetails {
 
 	}
 
-	public Usuario(long id, String usuario,String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol) {
-		super();
+	public Usuario(long id, String usuario,String clave, Integer edad, Date fechaNacimiento, String nombre, String apellido, String rol) {
+		
 		this.id = id;
 		this.usuario = usuario;
 		this.clave = clave;
@@ -111,11 +111,11 @@ public class Usuario implements UserDetails {
 		this.clave = clave;
 	}
 
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 
