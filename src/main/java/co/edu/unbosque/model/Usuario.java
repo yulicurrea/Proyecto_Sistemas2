@@ -13,11 +13,12 @@ import javax.persistence.Table;
 @Table (name = "usuario")
 public class Usuario {
 	
-	  @Id
+	    @Id
 	  	private long id;
+	    private String usuario;
 		private String clave;
 		private int edad;
-		private Date fechaNacimiento;
+		private Date fecha_nacimiento;
 		private String nombre;
 		private String apellido;
 		private String rol;
@@ -31,42 +32,26 @@ public class Usuario {
 	
 	
 
-	public Usuario(long id, String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol) {
+	public Usuario(long id, String usuario,String clave, int edad, Date fecha_nacimiento, String nombre, String apellido, String rol) {
 		super();
 		this.id = id;
+		this.usuario = usuario;
 		this.clave = clave;
 		this.edad = edad;
-		this.fechaNacimiento = fechaNacimiento;
+		this.fecha_nacimiento = fecha_nacimiento;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.rol = rol;
 	}
 
 
-
-
-
-
-
 	public String getApellido() {
 		return apellido;
 	}
 
-
-
-
-
-
-
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
-
-
-
-
-
 
 	public Long getId() {
 		return id;
@@ -74,44 +59,60 @@ public class Usuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNombre() {
-		return nombre;
+	
+	
+	public String getUsuario() {
+		return usuario;
 	}
 
 
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
 
 	public String getClave() {
 		return clave;
 	}
 
-
-
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-
-
-
+	
 	public int getEdad() {
 		return edad;
 	}
-
-
 
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 
-
-
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public Date getFecha_nacimiento() {
+		return fecha_nacimiento;
+	}
+
+
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
 
