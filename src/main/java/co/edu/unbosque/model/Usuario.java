@@ -13,16 +13,30 @@ import javax.persistence.Table;
 @Table (name = "usuario")
 public class Usuario {
 	
-	    @Id
-	  	private long id;
-	    private String usuario;
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id ;
+		
+		@Column(name = "clave", nullable = false, length = 15)
 		private String clave;
-		private int edad;
-		private Date fecha_nacimiento;
-		private String nombre;
-		private String apellido;
+		
+		@Column(name = "usuario", nullable = false, length = 15)
+		private String usuario;
+		
+		@Column(name = "rol", nullable = false, length = 15)
 		private String rol;
-	
+		
+		@Column(name = "nombre", nullable = false, length = 60)
+		private String nombre;
+		
+		@Column(name = "apellido", nullable = false, length = 60)
+		private String apellido;
+		
+		@Column(name = "edad", nullable = false, length = 3)
+		private Integer edad;
+		
+		@Column(name = "fecha_nacimiento", nullable = false, length = 11)
+		private Date fecha_nacimiento;
 	
 	
 	
