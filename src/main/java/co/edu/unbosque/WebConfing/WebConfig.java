@@ -1,8 +1,6 @@
 package co.edu.unbosque.WebConfing;
 
 
-
-import javax.activation.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,6 +64,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	            .and()
 	            .logout().logoutSuccessUrl("/").permitAll();
 	    }
+	    
 	     
 
 }
