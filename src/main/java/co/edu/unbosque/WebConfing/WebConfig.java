@@ -1,28 +1,22 @@
-package WebConfing;
+package co.edu.unbosque.WebConfing;
+
+
 
 import javax.activation.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-/*
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-*/
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-//import co.edu.unbosque.service.UsuarioDetailsService;
-/*
+import co.edu.unbosque.service.UsuarioDetailsService;
+
 @Configuration
 @EnableWebSecurity
 public class WebConfig extends WebSecurityConfigurerAdapter{
@@ -30,10 +24,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UsuarioDetailsService usuarioDetailsService;
 	
-	 @Autowired
-	 private DataSource dataSource;
-	     
-	    @Bean
+
+	 @Bean
 	    public UserDetailsService userDetailsService() {
 	        return usuarioDetailsService;
 	    }
@@ -64,12 +56,12 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	    
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.authorizeRequests()
-	            .antMatchers("/users").authenticated()
+	            .antMatchers("/api/user/login").authenticated()
 	            .anyRequest().permitAll()
 	            .and()
 	            .formLogin()
 	                .usernameParameter("usuario")
-	                .defaultSuccessUrl("/users")
+	                .defaultSuccessUrl("/api/user/login")
 	                .permitAll()
 	            .and()
 	            .logout().logoutSuccessUrl("/").permitAll();
@@ -77,4 +69,3 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
 	     
 
 }
-*/

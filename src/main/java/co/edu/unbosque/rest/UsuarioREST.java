@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.service.UsuarioService;
 
-@Controller
+@RestController
 @RequestMapping("/api/user/")
 public class UsuarioREST {
 
@@ -45,12 +45,7 @@ public class UsuarioREST {
 		
 	}
 	
-	@GetMapping("index")
-    public String viewHomePage() {
-        return "index";
-    }
-
-	@PostMapping
+	@PostMapping("guardar")
 	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
 		Usuario temporal = personaService.create(persona);
 
@@ -78,36 +73,14 @@ public class UsuarioREST {
 	private ResponseEntity<Optional<Usuario>> listarPersonasPorID(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(personaService.findById(id));
 	}
+
 	
-	
-	
-	@GetMapping("/register")
-	public String showRegistrationForm(Model model) {
-	    model.addAttribute("user", new User());
-	     
-	    return "signup_form";
-	}
-	
-	/*
-	@PostMapping("/process_register")
-	public String processRegister(Usuario user) {
-	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	    String encodedPassword = passwordEncoder.encode(user.getClave());
-	    user.setClave(encodedPassword);
-	     
-	    personaService.guardarUsuario(user);
-	     
-	    return "register_success";
-	}
-	*/
-	
-	/*
 	@CrossOrigin
-	@RequestMapping("/login")
+	@GetMapping("login")
 	public Principal user(Principal principal) {
 		logger.info("user logged "+principal);
 		return principal;
 	}
-	*/
+	
 	
 }
