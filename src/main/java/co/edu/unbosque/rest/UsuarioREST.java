@@ -57,7 +57,7 @@ public class UsuarioREST {
 		}
 	}
 
-	@PostMapping
+	@GetMapping
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona() {
 		return ResponseEntity.ok(personaService.getAllPersonas());
 	}
