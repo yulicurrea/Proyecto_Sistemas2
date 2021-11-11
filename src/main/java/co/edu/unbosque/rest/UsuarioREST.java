@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.service.UsuarioService;
 
@@ -29,7 +30,6 @@ public class UsuarioREST {
 	@PostMapping
 	private ResponseEntity<Usuario> guardar (@RequestBody Usuario persona){
 		Usuario temporal = personaService.create(persona);
-		
 		try {
 			return ResponseEntity.created(new URI("/api/user/"+temporal.getId())).body(temporal);
 			
@@ -38,6 +38,14 @@ public class UsuarioREST {
 		}
 	}
 	
+	@PostMapping("login/")
+	private ResponseEntity<Boolean> login (@RequestBody Login user ){
+		try {
+			return ResponseEntity.ok(personaService.login(user) == true);
+		}catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 	
 	@GetMapping
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona (){

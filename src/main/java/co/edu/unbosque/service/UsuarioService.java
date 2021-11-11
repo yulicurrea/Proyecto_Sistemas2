@@ -1,65 +1,56 @@
 package co.edu.unbosque.service;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.repository.UsuarioRepository;
 
-
-
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository personaResporitory;
-	
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public Usuario create(Usuario persona) {
-		Usuario usu = new Usuario();
-		usu.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
 		return personaResporitory.save(persona);
+	}
+
+	public boolean login(Login user) {
+		boolean aux = false;
+		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
+			if (personaResporitory.findAll().get(i).getUsuario().equals(user.getUsuario())) {
+				if (user.getClave().equals(personaResporitory.findAll().get(i).getClave())) {
+					aux = true;
+					break;
+				} else {
+					aux = false;
+				}
+			}
+		}
+		return aux;
 	}
 
 	public List<Usuario> getAllPersonas() {
 		return personaResporitory.findAll();
 	}
 
+	public void delete(Usuario persona) {
+		personaResporitory.delete(persona);
+	}
+
 	public void deleteById(Long id) {
 		personaResporitory.deleteById(id);
 	}
 
-	public void delete(Usuario entity) {
-		personaResporitory.delete(entity);
-	}
-
 	public Optional<Usuario> findById(Long id) {
 		return personaResporitory.findById(id);
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario us = personaResporitory.findByUsuario(username);
-
-		List<GrantedAuthority> roles = new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority("ADMIN"));
-
-		UserDetails userDet = new User(us.getUsuario(), us.getClave(), roles);
-
-		return userDet;
 	}
 
 }

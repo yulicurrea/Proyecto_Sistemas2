@@ -1,6 +1,10 @@
 package co.edu.unbosque.model;
+
 import java.util.Date;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,55 +13,41 @@ import javax.persistence.Id;
 
 import javax.persistence.Table;
 
-@Entity
-@Table (name = "usuario")
-public class Usuario {
-	
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id ;
-		
-		@Column(name = "clave", nullable = false, length = 15)
-		private String clave;
-		
-		@Column(name = "usuario", nullable = false, length = 15)
-		private String usuario;
-		
-		@Column(name = "rol", nullable = false, length = 15)
-		private String rol;
-		
-		@Column(name = "nombre", nullable = false, length = 60)
-		private String nombre;
-		
-		@Column(name = "apellido", nullable = false, length = 60)
-		private String apellido;
-		
-		@Column(name = "edad", nullable = false, length = 3)
-		private Integer edad;
-		
-		@Column(name = "fecha_nacimiento", nullable = false, length = 11)
-		private Date fecha_nacimiento;
-	
-	
-	
-	public Usuario () {
-		
-	}
-	
-	
+import org.apache.commons.codec.binary.Hex;
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-	public Usuario(long id, String usuario,String clave, int edad, Date fecha_nacimiento, String nombre, String apellido, String rol) {
+@Entity
+@Table(name = "usuario")
+public class Usuario {
+
+	@Id
+	private long id;
+	private String clave;
+	private Integer edad;
+	private Date fechaNacimiento;
+	private String nombre;
+	private String apellido;
+	private String rol;
+	private String usuario;
+	
+	public Usuario() {
+
+	}
+
+	public Usuario(long id, String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol,
+			String usuario) {
 		super();
 		this.id = id;
-		this.usuario = usuario;
 		this.clave = clave;
 		this.edad = edad;
-		this.fecha_nacimiento = fecha_nacimiento;
+		this.fechaNacimiento = fechaNacimiento;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.rol = rol;
-	}
+		this.usuario = usuario;
 
+	}
 
 	public String getApellido() {
 		return apellido;
@@ -70,22 +60,10 @@ public class Usuario {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	public String getUsuario() {
-		return usuario;
-	}
-
-
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -98,53 +76,38 @@ public class Usuario {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	
-	
 
 	public Integer getEdad() {
 		return edad;
 	}
 
-
-
 	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 
-
-
-	public void setId(long id) {
-		this.id = id;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
-
-
-
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
-	}
-
-
-
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
-	}
-
-
 
 	public String getRol() {
 		return rol;
 	}
 
-
-
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+
 }
