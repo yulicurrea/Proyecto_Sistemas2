@@ -29,7 +29,6 @@ public class UsuarioService implements UserDetailsService {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public Usuario create(Usuario persona) {
-
 		Usuario usu = new Usuario();
 		usu.setClave(bCryptPasswordEncoder.encode(usu.getClave()));
 		return personaResporitory.save(persona);

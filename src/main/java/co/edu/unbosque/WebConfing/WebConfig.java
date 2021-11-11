@@ -1,5 +1,5 @@
-package co.edu.unbosque.WebConfing;
 
+package co.edu.unbosque.WebConfing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,15 +38,16 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	
-    	
-        http
-          .authorizeRequests()          
+    	/*
+        http.authorizeRequests()          
           .anyRequest()          
           .authenticated()
           .and()
           .httpBasic();
-          
+         */
+    	
+    	
+      
     }
     	
-
 }

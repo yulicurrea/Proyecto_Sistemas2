@@ -26,12 +26,12 @@ public class UsuarioREST {
 	@Autowired
 	private UsuarioService personaService;
 	
-	@PostMapping
+	@PostMapping("/guardar")
 	private ResponseEntity<Usuario> guardar (@RequestBody Usuario persona){
 		Usuario temporal = personaService.create(persona);
 		
 		try {
-			return ResponseEntity.created(new URI("/api/persona"+temporal.getId())).body(temporal);
+			return ResponseEntity.created(new URI("/api/user/"+temporal.getId())).body(temporal);
 			
 		}catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -39,7 +39,7 @@ public class UsuarioREST {
 	}
 	
 	
-	@GetMapping
+	@GetMapping("/listar")
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona (){
 		return ResponseEntity.ok(personaService.getAllPersonas());
 	}
