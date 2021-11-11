@@ -40,14 +40,11 @@ public class WebConfig extends WebSecurityConfigurerAdapter{
     	
     	
         http.authorizeRequests()          
-          .anyRequest()          
-          .authenticated()
+          .anyRequest().fullyAuthenticated()        
           .and()
           .httpBasic();
          
     	
-    	
-      
     }
     	
 }
