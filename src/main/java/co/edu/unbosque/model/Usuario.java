@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Hex;
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "usuario")
@@ -22,13 +24,13 @@ public class Usuario {
 	@Id
 	private long id;
 	private String clave;
-	private int edad;
+	private Integer edad;
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;
 	private String rol;
 	private String usuario;
-
+	
 	public Usuario() {
 
 	}
@@ -72,19 +74,14 @@ public class Usuario {
 	}
 
 	public void setClave(String clave) {
-		try {
-			this.clave = sha1(clave);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.clave = clave;
 	}
 
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 
@@ -112,10 +109,5 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
-	public static String sha1(String text) throws NoSuchAlgorithmException {
-		MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-		byte[] bytes = messageDigest.digest(text.getBytes());
-		return Hex.encodeHexString(bytes);
-	}
 
 }
