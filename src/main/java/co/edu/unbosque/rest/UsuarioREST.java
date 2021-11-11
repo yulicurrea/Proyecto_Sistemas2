@@ -58,6 +58,7 @@ public class UsuarioREST {
 		return ResponseEntity.ok(!(personaService.findById(id)!=null));
 	
 	}
+
 	
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Optional<Usuario>> listarPersonasPorID (@PathVariable ("id") Long id){
