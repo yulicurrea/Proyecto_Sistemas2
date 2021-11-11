@@ -28,7 +28,7 @@ class MainTests {
 		Usuario usu = new Usuario();
 		Date nacimiento = new Date("12/08/1998");
 		
-		usu.setId((long) 2);
+		usu.setId((long) 1);
 		usu.setNombre("Juan");
 		usu.setApellido("Perez");
 		usu.setFechaNacimiento(nacimiento);

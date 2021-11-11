@@ -15,6 +15,9 @@ import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -22,9 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String clave;
 	private Integer edad;
+	
+	@Column(name = "fecha_nacimiento" )
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;
@@ -75,10 +81,12 @@ public class Usuario {
 		return nombre;
 	}
 
+	@JsonIgnore
 	public String getClave() {
 		return clave;
 	}
 
+	@JsonProperty
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
