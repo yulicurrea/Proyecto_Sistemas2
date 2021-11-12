@@ -1,4 +1,5 @@
 package co.edu.unbosque.rest;
+
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -18,52 +19,54 @@ import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.service.UsuarioService;
 
-
-
 @RestController
-@RequestMapping ("/api/user/")
+@RequestMapping("/api/user/")
 public class UsuarioREST {
-	
+
 	@Autowired
 	private UsuarioService personaService;
-	
+
 	@PostMapping
-	private ResponseEntity<Usuario> guardar (@RequestBody Usuario persona){
-		Usuario temporal = personaService.create(persona);
-		try {
-			return ResponseEntity.created(new URI("/api/user/"+temporal.getId())).body(temporal);
-			
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
-	}
-	
-	@PostMapping("login/")
-	private ResponseEntity<Boolean> login (@RequestBody Login user ){
-		try {
-			return ResponseEntity.ok(personaService.login(user) == true);
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
-	}
-	
-	@GetMapping
-	private ResponseEntity<List<Usuario>> listarTodasLasPersona (){
-		return ResponseEntity.ok(personaService.getAllPersonas());
-	}
-	
-	@DeleteMapping(value = "delete/{id}")
-	private ResponseEntity<Boolean>eliminarPersona(@PathVariable ("id") Long id){
-		personaService.deleteById(id);
-		return ResponseEntity.ok(!(personaService.findById(id)!=null));
-	
+	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
+		
+			Usuario temporal = personaService.create(persona);
+			try {
+				return ResponseEntity.created(new URI("/api/user/" + temporal.getId())).body(temporal);
+
+			} catch (Exception e) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			}
+		
 	}
 
-	
-	@GetMapping (value = "{id}")
-	private ResponseEntity<Optional<Usuario>> listarPersonasPorID (@PathVariable ("id") Long id){
+	@PostMapping("login/")
+	private ResponseEntity<Boolean> login(@RequestBody Login user) {
+		try {
+			return ResponseEntity.ok(personaService.login(user) == true);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
+	@PostMapping("validar/")
+	private ResponseEntity<Boolean> Validacion(@RequestBody Usuario persona) {
+		return ResponseEntity.ok(personaService.validacionId(persona) == true && personaService.validacionUser(persona) == true);
+	}
+
+	@GetMapping
+	private ResponseEntity<List<Usuario>> listarTodasLasPersona() {
+		return ResponseEntity.ok(personaService.getAllPersonas());
+	}
+
+	@DeleteMapping(value = "delete/{id}")
+	private ResponseEntity<Boolean> eliminarPersona(@PathVariable("id") Long id) {
+		personaService.deleteById(id);
+		return ResponseEntity.ok(!(personaService.findById(id) != null));
+
+	}
+
+	@GetMapping(value = "{id}")
+	private ResponseEntity<Optional<Usuario>> listarPersonasPorID(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(personaService.findById(id));
 	}
-	
 
 }

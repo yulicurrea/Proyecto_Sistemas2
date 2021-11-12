@@ -52,5 +52,25 @@ public class UsuarioService {
 	public Optional<Usuario> findById(Long id) {
 		return personaResporitory.findById(id);
 	}
+	public boolean validacionId(Usuario login) {
+		boolean aux = false;
+		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
+			if (!personaResporitory.findAll().get(i).getId().equals(login.getId())) {
+					aux = true;
+					break;
+			}
+		}
+		return aux;
+	}
+	public boolean validacionUser(Usuario login) {
+		boolean aux = false;
+		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
+			if (!personaResporitory.findAll().get(i).getUsuario().equals(login.getUsuario())) {
+					aux = true;
+					break;
+			}
+		}
+		return aux;
+	}
 
 }
