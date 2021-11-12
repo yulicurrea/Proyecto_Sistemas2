@@ -15,6 +15,9 @@ import javax.persistence.Table;
 
 import org.apache.commons.codec.binary.Hex;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
@@ -22,8 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Usuario {
 
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String clave;
+	private Integer edad;
+	
+	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;
@@ -34,17 +41,24 @@ public class Usuario {
 
 	}
 
-	public Usuario(long id, String clave, Date fechaNacimiento, String nombre, String apellido, String rol,
+	public Usuario(long id, String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol,
 			String usuario) {
 		super();
 		this.id = id;
 		this.clave = clave;
+		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.rol = rol;
 		this.usuario = usuario;
 
+	}
+
+	
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getApellido() {
@@ -67,12 +81,22 @@ public class Usuario {
 		return nombre;
 	}
 
+	@JsonIgnore
 	public String getClave() {
 		return clave;
 	}
 
+	@JsonProperty
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public Integer getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
 	}
 
 	public Date getFechaNacimiento() {
@@ -99,9 +123,5 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
 
 }
