@@ -30,10 +30,6 @@ public class UsuarioREST {
 	@Autowired
 	private UsuarioService personaService;
 	
-	//Verbos  GET, POST, PUT, DELETE
-	//@VerboMapping
-	//@VerboMapping("/eliminar")
-	
 	//POST, PUT> Reciben datos en tipo JSON, entonces debo usar @RequestBody
 	
 	//GET, DELETE no reciben datos tipo JSON. Yo debo mandarlos por ruta o URL
