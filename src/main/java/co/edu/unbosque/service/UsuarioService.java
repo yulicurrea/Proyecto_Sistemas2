@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.repository.UsuarioRepository;
+import co.edu.unbosque.util.Utils;
 
 @Service
 public class UsuarioService {
@@ -25,6 +26,8 @@ public class UsuarioService {
 	public Usuario create(Usuario persona) {
 		
 		persona.setClave(encoder.encode(persona.getClave()));
+		
+		persona.setEdad(Utils.obtenerEdad(persona.getFechaNacimiento()));
 		
 		return personaResporitory.save(persona);
 	}
@@ -56,8 +59,12 @@ public class UsuarioService {
 		personaResporitory.deleteById(id);
 	}
 
-	public Optional<Usuario> findById(Long id) {
-		return personaResporitory.findById(id);
+	public Usuario findById(Long id) {
+		return personaResporitory.findById(id).orElse(null);
+	}
+
+	public Usuario getPersonaPorId(Long id) {
+		return personaResporitory.getById(id);
 	}
 
 }

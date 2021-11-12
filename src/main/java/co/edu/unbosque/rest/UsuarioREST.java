@@ -48,7 +48,14 @@ public class UsuarioREST {
 		}
 	}
 	
-	//@Secured("ROLE_USER")
+	/*
+	@GetMapping("/{id}")
+	public Usuario getUsuario(@PathVariable Long id) {
+		return personaService.getPersonaPorId(id);
+	}
+	*/
+	
+	//@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@GetMapping
 	private ResponseEntity<List<Usuario>> listarTodasLasPersona (){
 		return ResponseEntity.ok(personaService.getAllPersonas());
@@ -57,13 +64,13 @@ public class UsuarioREST {
 	@DeleteMapping(value = "delete/{id}")
 	private ResponseEntity<Boolean>eliminarPersona(@PathVariable ("id") Long id){
 		personaService.deleteById(id);
-		return ResponseEntity.ok(!(personaService.findById(id)!=null));
+		return ResponseEntity.ok((personaService.findById(id)==null));
 	
 	}
 
 	
 	@GetMapping (value = "{id}")
-	private ResponseEntity<Optional<Usuario>> listarPersonasPorID (@PathVariable ("id") Long id){
+	private ResponseEntity<Usuario> listarPersonasPorID (@PathVariable ("id") Long id){
 		return ResponseEntity.ok(personaService.findById(id));
 	}
 	
