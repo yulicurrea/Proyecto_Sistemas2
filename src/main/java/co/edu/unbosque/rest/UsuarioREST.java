@@ -30,6 +30,7 @@ public class UsuarioREST {
 	@Autowired
 	private UsuarioService personaService;
 	
+
 	//POST, PUT> Reciben datos en tipo JSON, entonces debo usar @RequestBody
 	
 	//GET, DELETE no reciben datos tipo JSON. Yo debo mandarlos por ruta o URL
@@ -46,22 +47,6 @@ public class UsuarioREST {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	
-	@PostMapping("login/")
-	private ResponseEntity<Boolean> login (@RequestBody Login user ){
-		try {
-			return ResponseEntity.ok(personaService.login(user) == true);
-		}catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		}
-	}
-	
-	/*
-	@GetMapping("/{id}")
-	public Usuario getUsuario(@PathVariable Long id) {
-		return personaService.getPersonaPorId(id);
-	}
-	*/
 	
 	//@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@GetMapping
