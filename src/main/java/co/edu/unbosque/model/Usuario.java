@@ -24,7 +24,6 @@ public class Usuario {
 	@Id
 	private long id;
 	private String clave;
-	private Integer edad;
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;
@@ -35,12 +34,11 @@ public class Usuario {
 
 	}
 
-	public Usuario(long id, String clave, int edad, Date fechaNacimiento, String nombre, String apellido, String rol,
+	public Usuario(long id, String clave, Date fechaNacimiento, String nombre, String apellido, String rol,
 			String usuario) {
 		super();
 		this.id = id;
 		this.clave = clave;
-		this.edad = edad;
 		this.fechaNacimiento = fechaNacimiento;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -75,14 +73,6 @@ public class Usuario {
 
 	public void setClave(String clave) {
 		this.clave = clave;
-	}
-
-	public Integer getEdad() {
-		return edad;
-	}
-
-	public void setEdad(Integer edad) {
-		this.edad = edad;
 	}
 
 	public Date getFechaNacimiento() {
