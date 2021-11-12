@@ -30,7 +30,7 @@ public class Usuario {
 	private String clave;
 	private Integer edad;
 	
-	@Column(name = "fecha_nacimiento" )
+	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;

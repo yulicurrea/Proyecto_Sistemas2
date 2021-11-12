@@ -3,6 +3,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +30,18 @@ public class UsuarioREST {
 	@Autowired
 	private UsuarioService personaService;
 	
+	//Verbos  GET, POST, PUT, DELETE
+	//@VerboMapping
+	//@VerboMapping("/eliminar")
+	
+	//POST, PUT> Reciben datos en tipo JSON, entonces debo usar @RequestBody
+	
+	//GET, DELETE no reciben datos tipo JSON. Yo debo mandarlos por ruta o URL
+		//1)  url/variable/variable2.  Las obtengo con @Pathvariable
+		//2)  url?var1=nombre&var2=apellido. Las obtengo con @PathParam
+	
 	@PostMapping
-	private ResponseEntity<Usuario> guardar (@RequestBody Usuario persona){
+	private ResponseEntity<Usuario> guardar (@RequestBody  Usuario persona){
 		Usuario temporal = personaService.create(persona);
 		try {
 			return ResponseEntity.created(new URI("/api/user/"+temporal.getId())).body(temporal);
