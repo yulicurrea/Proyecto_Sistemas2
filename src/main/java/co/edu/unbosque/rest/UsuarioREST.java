@@ -1,6 +1,7 @@
 package co.edu.unbosque.rest;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,15 +29,15 @@ public class UsuarioREST {
 
 	@PostMapping
 	private ResponseEntity<Usuario> guardar(@RequestBody Usuario persona) {
-		
-			Usuario temporal = personaService.create(persona);
-			try {
-				return ResponseEntity.created(new URI("/api/user/" + temporal.getId())).body(temporal);
 
-			} catch (Exception e) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-			}
-		
+		Usuario temporal = personaService.create(persona);
+		try {
+			return ResponseEntity.created(new URI("/api/user/" + temporal.getId())).body(temporal);
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+
 	}
 
 	@PostMapping("login/")
@@ -47,9 +48,15 @@ public class UsuarioREST {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	@PostMapping("validar/")
-	private ResponseEntity<Boolean> Validacion(@RequestBody Usuario persona) {
-		return ResponseEntity.ok(personaService.validacionId(persona) == true && personaService.validacionUser(persona) == true);
+
+	@PostMapping("validarId/")
+	private ResponseEntity<Boolean> validarId(@RequestBody Usuario persona) {
+		return ResponseEntity.ok(personaService.validacionId(persona));
+	}
+
+	@PostMapping("validarUsuario/")
+	private ResponseEntity<Boolean> validarUsuario(@RequestBody Usuario persona) {
+		return ResponseEntity.ok(personaService.validacionUser(persona));
 	}
 
 	@GetMapping
@@ -62,6 +69,29 @@ public class UsuarioREST {
 		personaService.deleteById(id);
 		return ResponseEntity.ok(!(personaService.findById(id) != null));
 
+	}
+
+	@PostMapping("editar/{id}")
+	private ResponseEntity<Usuario> editarPersona(@RequestBody Usuario user, @PathVariable("id") Long id) {
+		Usuario editar = new Usuario();
+		if (personaService.findById(id) != null) {
+			editar.setId(user.getId());
+			editar.setNombre(user.getNombre());
+			editar.setApellido(user.getApellido());
+			editar.setUsuario(user.getUsuario());	
+			editar.setRol(user.getRol());
+			editar.setClave(user.getClave());
+			editar.setFechaNacimiento(user.getFechaNacimiento());
+			personaService.deleteById(id);
+			personaService.create(editar);
+			
+		}
+		try {
+			return ResponseEntity.created(new URI("/api/user/editar/" + editar.getId())).body(editar);
+		} catch (URISyntaxException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	
 	}
 
 	@GetMapping(value = "{id}")

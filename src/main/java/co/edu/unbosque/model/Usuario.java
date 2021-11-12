@@ -99,5 +99,9 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 
 }

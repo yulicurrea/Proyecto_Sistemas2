@@ -1,6 +1,6 @@
 package co.edu.unbosque.service;
 
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -55,7 +55,7 @@ public class UsuarioService {
 	public boolean validacionId(Usuario login) {
 		boolean aux = false;
 		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (!personaResporitory.findAll().get(i).getId().equals(login.getId())) {
+			if (personaResporitory.findAll().get(i).getId() == login.getId()) {
 					aux = true;
 					break;
 			}
@@ -65,7 +65,7 @@ public class UsuarioService {
 	public boolean validacionUser(Usuario login) {
 		boolean aux = false;
 		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (!personaResporitory.findAll().get(i).getUsuario().equals(login.getUsuario())) {
+			if (personaResporitory.findAll().get(i).getUsuario().equals(login.getUsuario())) {
 					aux = true;
 					break;
 			}
