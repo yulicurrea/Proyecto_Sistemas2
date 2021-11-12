@@ -1,6 +1,6 @@
 package co.edu.unbosque.service;
 
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,21 +32,6 @@ public class UsuarioService {
 		return personaResporitory.save(persona);
 	}
 
-	public boolean login(Login user) {
-		boolean aux = false;
-		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (personaResporitory.findAll().get(i).getUsuario().equals(user.getUsuario())) {
-				if (user.getClave().equals(personaResporitory.findAll().get(i).getClave())) {
-					aux = true;
-					break;
-				} else {
-					aux = false;
-				}
-			}
-		}
-		return aux;
-	}
-
 	public List<Usuario> getAllPersonas() {
 		return personaResporitory.findAll();
 	}
@@ -65,26 +50,6 @@ public class UsuarioService {
 
 	public Usuario getPersonaPorId(Long id) {
 		return personaResporitory.getById(id);
-	}
-	public boolean validacionId(Usuario login) {
-		boolean aux = false;
-		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (personaResporitory.findAll().get(i).getId() == login.getId()) {
-					aux = true;
-					break;
-			}
-		}
-		return aux;
-	}
-	public boolean validacionUser(Usuario login) {
-		boolean aux = false;
-		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (personaResporitory.findAll().get(i).getUsuario().equals(login.getUsuario())) {
-					aux = true;
-					break;
-			}
-		}
-		return aux;
 	}
 
 }
