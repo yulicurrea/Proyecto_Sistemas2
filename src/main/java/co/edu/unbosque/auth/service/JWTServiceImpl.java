@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import co.edu.unbosque.service.JpaUserDetailsService;
 import co.edu.unbosque.util.Bean;
@@ -21,20 +20,18 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class JWTServiceImpl implements JWTService{
-	
+public class JWTServiceImpl implements JWTService {
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public String create(Authentication auth) throws IOException {
 		String username = ((User) auth.getPrincipal()).getUsername();
-		
+
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("role", "ROLE");
-		claims.put("companyId",1);
-		
-		return Jwts.builder()				
-				.setSubject(username)
-				.addClaims(claims)
+		claims.put("companyId", 1);
+
+		return Jwts.builder().setSubject(username).addClaims(claims)
 				.signWith(SignatureAlgorithm.HS512, CommonVar.SALT.getBytes()).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + CommonVar.DATE_TOKEN_EXPIRATION)).compact();
 

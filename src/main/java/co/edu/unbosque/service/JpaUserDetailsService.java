@@ -21,36 +21,35 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository dao;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario =  dao.findByUsuario(username);
-		
+		Usuario usuario = dao.findByUsuario(username);
+
 		List<Usuario> lista = dao.findAll();
-		
-		if(usuario == null) {
+
+		if (usuario == null) {
 			throw new UsernameNotFoundException(username);
 		}
-		
+
 		List<GrantedAuthority> roles = new ArrayList<>();
 		String prefix = "ROLE_";
-		
-		//TODO agregar el rol
-		//roles.add(new SimpleGrantedAuthority(prefix + usuario.getRole().getName()));
-		roles.add(new SimpleGrantedAuthority(prefix + usuario.getRol().toUpperCase()));
-		
 
-		return new User(username, usuario.getClave(), true, true, true,true, roles);
+		// TODO agregar el rol
+		// roles.add(new SimpleGrantedAuthority(prefix + usuario.getRole().getName()));
+		roles.add(new SimpleGrantedAuthority(prefix + usuario.getRol().toUpperCase()));
+
+		return new User(username, usuario.getClave(), true, true, true, true, roles);
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities(String userName) {
 		Usuario usuario = dao.findByUsuario(userName);
-		
+
 		List<GrantedAuthority> roles = new ArrayList<>();
 		String prefix = "ROLE_";
-		
-		//TODO agregar el rol
-		//roles.add(new SimpleGrantedAuthority(prefix + usuario.getRole().getName()));
+
+		// TODO agregar el rol
+		// roles.add(new SimpleGrantedAuthority(prefix + usuario.getRole().getName()));
 		roles.add(new SimpleGrantedAuthority(prefix + "USER"));
 		return roles;
 	}
