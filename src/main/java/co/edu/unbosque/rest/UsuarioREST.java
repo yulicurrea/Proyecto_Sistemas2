@@ -29,6 +29,7 @@ public class UsuarioREST {
 	
 	@Autowired
 	private UsuarioService personaService;
+	private String rol;
 	
 
 	//POST, PUT> Reciben datos en tipo JSON, entonces debo usar @RequestBody
@@ -61,12 +62,10 @@ public class UsuarioREST {
 	
 	}
 
-	
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Usuario> listarPersonasPorID (@PathVariable ("id") Long id){
 		return ResponseEntity.ok(personaService.findById(id));
 	}
-	
 	
 	
 	
