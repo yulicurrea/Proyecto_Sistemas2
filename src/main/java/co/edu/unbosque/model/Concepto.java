@@ -14,12 +14,15 @@ public class Concepto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(name = "id_categoria", nullable = false)
+	private long id_categoria;
 	@Column(name = "concepto", nullable = false)
 	private String concepto;
 
-	public Concepto(long id, String concepto) {
+	public Concepto(long id, long id_categoria, String concepto) {
 		super();
 		this.id = id;
+		this.id_categoria = id_categoria;
 		this.concepto = concepto;
 	}
 
@@ -29,6 +32,14 @@ public class Concepto {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getId_categoria() {
+		return id_categoria;
+	}
+
+	public void setId_categoria(long id_categoria) {
+		this.id_categoria = id_categoria;
 	}
 
 	public String getConcepto() {

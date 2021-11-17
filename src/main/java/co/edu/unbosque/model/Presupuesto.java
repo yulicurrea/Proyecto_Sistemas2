@@ -16,8 +16,6 @@ public class Presupuesto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "id_categoria", nullable = false)
-	private long id_categoria;
 	@Column(name = "id_concepto", nullable = false)
 	private long id_concepto;
 	@Column(name = "anio", nullable = false)
@@ -31,11 +29,10 @@ public class Presupuesto {
 	@Column(name = "ppto_restante", nullable = false)
 	private double ppto_restante;
 
-	public Presupuesto(long id, long id_categoria, long id_concepto, Date anio, double ppto_asignado,
-			double porce_ppto_alcanzado, double ppto_alcanzado, double ppto_restante) {
+	public Presupuesto(long id, long id_concepto, Date anio, double ppto_asignado, double porce_ppto_alcanzado,
+			double ppto_alcanzado, double ppto_restante) {
 		super();
 		this.id = id;
-		this.id_categoria = id_categoria;
 		this.id_concepto = id_concepto;
 		this.anio = anio;
 		this.ppto_asignado = ppto_asignado;
@@ -50,14 +47,6 @@ public class Presupuesto {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getId_categoria() {
-		return id_categoria;
-	}
-
-	public void setId_categoria(long id_categoria) {
-		this.id_categoria = id_categoria;
 	}
 
 	public long getId_concepto() {
