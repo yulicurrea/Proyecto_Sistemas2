@@ -4,8 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.edu.unbosque.model.Concepto;
 
-public interface ConceptoRepository extends JpaRepository<Concepto, Long> {
-
-	Concepto findByConcepto(String concepto);
+public interface ConceptoRepository extends JpaRepository<Concepto, Integer> {
 
 }
