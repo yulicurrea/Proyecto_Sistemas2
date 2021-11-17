@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Concepto;
-import co.edu.unbosque.service.api.CategoriaServiceAPI;
+import co.edu.unbosque.service.api.ConceptoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
 
 @RestController
@@ -21,7 +21,7 @@ import co.edu.unbosque.utils.ResourceNotFoundException;
 public class ConceptoRestController {
 
 	@Autowired
-	private ConceptoServiceAPI concepto;
+	private ConceptoServiceAPI conceptoServiceAPI;
 
 	@GetMapping(value = "/getAll")
 	public List<Concepto> getAll() {
@@ -53,7 +53,7 @@ public class ConceptoRestController {
 		} else {
 			return new ResponseEntity<Concepto>(concepto, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Concepto>(categoria, HttpStatus.OK);
+		return new ResponseEntity<Concepto>(concepto, HttpStatus.OK);
 
 	}
 }
