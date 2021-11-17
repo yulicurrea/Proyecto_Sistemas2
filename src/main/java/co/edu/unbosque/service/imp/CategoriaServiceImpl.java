@@ -10,13 +10,13 @@ import co.edu.unbosque.service.api.CategoriaServiceAPI;
 import co.edu.unbosque.utils.GenericServiceImpl;
 
 @Service
-public class CategoriaServiceImpl extends GenericServiceImpl<Categoria, Integer>  implements CategoriaServiceAPI{
+public class CategoriaServiceImpl extends GenericServiceImpl<Categoria, Long> implements CategoriaServiceAPI {
 
 	@Autowired
 	private CategoriaRepository categoriaDaoAPI;
-	
+
 	@Override
-	public CrudRepository<Categoria, Integer> getDao() {
+	public CrudRepository<Categoria, Long> getDao() {
 		return categoriaDaoAPI;
 	}
 

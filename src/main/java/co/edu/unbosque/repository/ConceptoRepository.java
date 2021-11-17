@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.edu.unbosque.model.Concepto;
 
-public interface ConceptoRepository extends JpaRepository<Concepto, Integer> {
+public interface ConceptoRepository extends JpaRepository<Concepto, Long> {
 
 }

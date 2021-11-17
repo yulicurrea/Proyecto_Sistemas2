@@ -10,13 +10,13 @@ import co.edu.unbosque.service.api.ConceptoServiceAPI;
 import co.edu.unbosque.utils.GenericServiceImpl;
 
 @Service
-public class ConceptoServiceImpl extends GenericServiceImpl<Concepto, Integer>  implements ConceptoServiceAPI{
+public class ConceptoServiceImpl extends GenericServiceImpl<Concepto, Long> implements ConceptoServiceAPI {
 
 	@Autowired
 	private ConceptoRepository conceptoDaoAPI;
-	
+
 	@Override
-	public CrudRepository<Concepto, Integer> getDao() {
+	public CrudRepository<Concepto, Long> getDao() {
 		return conceptoDaoAPI;
 	}
 

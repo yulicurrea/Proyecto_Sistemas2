@@ -35,7 +35,7 @@ public class CategoriaRestController {
 	}
 
 	@GetMapping(value = "/findRecord/{id}")
-	public ResponseEntity<Categoria> getCategoriaById(@PathVariable(value = "id") Integer id)
+	public ResponseEntity<Categoria> getCategoriaById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
 		Categoria categoria = categoriaServiceAPI.get(id);
 		if (categoria == null) {
@@ -46,7 +46,7 @@ public class CategoriaRestController {
 	}
 
 	@DeleteMapping(value = "/deleteCategoria/{id}")
-	public ResponseEntity<Categoria> delete(@PathVariable(value = "id") Integer id) {
+	public ResponseEntity<Categoria> delete(@PathVariable(value = "id") Long id) {
 		Categoria categoria = categoriaServiceAPI.get(id);
 		if (categoria != null) {
 			categoriaServiceAPI.delete(id);

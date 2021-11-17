@@ -35,7 +35,7 @@ public class PresupuestoRestController {
 	}
 
 	@GetMapping(value = "/findRecord/{id}")
-	public ResponseEntity<Presupuesto> getPresupuestoById(@PathVariable(value = "id") Integer id)
+	public ResponseEntity<Presupuesto> getPresupuestoById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
 		Presupuesto presupuesto = presupuestoServiceAPI.get(id);
 		if (presupuesto == null) {
@@ -46,7 +46,7 @@ public class PresupuestoRestController {
 	}
 
 	@DeleteMapping(value = "/deletePresupuesto/{id}")
-	public ResponseEntity<Presupuesto> delete(@PathVariable(value = "id") Integer id) {
+	public ResponseEntity<Presupuesto> delete(@PathVariable(value = "id") Long id) {
 		Presupuesto presupuesto = presupuestoServiceAPI.get(id);
 		if (presupuesto != null) {
 			presupuestoServiceAPI.delete(id);

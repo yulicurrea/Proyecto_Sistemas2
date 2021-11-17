@@ -35,7 +35,7 @@ public class ConceptoRestController {
 	}
 
 	@GetMapping(value = "/findRecord/{id}")
-	public ResponseEntity<Concepto> getConceptoById(@PathVariable(value = "id") Integer id)
+	public ResponseEntity<Concepto> getConceptoById(@PathVariable(value = "id") Long id)
 			throws ResourceNotFoundException {
 		Concepto concepto = conceptoServiceAPI.get(id);
 		if (concepto == null) {
@@ -46,7 +46,7 @@ public class ConceptoRestController {
 	}
 
 	@DeleteMapping(value = "/deleteConcepto/{id}")
-	public ResponseEntity<Concepto> delete(@PathVariable(value = "id") Integer id) {
+	public ResponseEntity<Concepto> delete(@PathVariable(value = "id") Long id) {
 		Concepto concepto = conceptoServiceAPI.get(id);
 		if (concepto != null) {
 			conceptoServiceAPI.delete(id);
