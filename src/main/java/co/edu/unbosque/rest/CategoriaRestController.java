@@ -28,7 +28,7 @@ public class CategoriaRestController {
 		return categoriaServiceAPI.getAll();
 	}
 
-	@GetMapping(value = "/saveTipoUsuario")
+	@GetMapping(value = "/saveCategoria")
 	public ResponseEntity<Categoria> save(@RequestBody Categoria categoria) {
 		Categoria obj = categoriaServiceAPI.save(categoria);
 		return new ResponseEntity<Categoria>(obj, HttpStatus.OK);
