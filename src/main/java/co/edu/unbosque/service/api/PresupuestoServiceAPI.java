@@ -7,4 +7,5 @@ import co.edu.unbosque.utils.GenericServiceAPI;
 public interface PresupuestoServiceAPI extends GenericServiceAPI<Presupuesto, Long> {
 
 	public PresupuestoDTO obtenerPresupuestoPorCategoria(Long idCategoria);
+
 }
