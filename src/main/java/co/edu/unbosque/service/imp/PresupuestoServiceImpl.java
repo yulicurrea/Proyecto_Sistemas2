@@ -23,9 +23,6 @@ public class PresupuestoServiceImpl extends GenericServiceImpl<Presupuesto, Long
 	@Autowired
 	private PresupuestoVisRepository presupuestoVisDAO;
 
-	@Autowired
-	private PresupuestoVisRepository presupuestoVisDAO;
-
 	@Override
 	public CrudRepository<Presupuesto, Long> getDao() {
 		return presupuestoDaoAPI;
