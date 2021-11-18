@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Concepto;
+import co.edu.unbosque.model.ConceptoVis;
+import co.edu.unbosque.repository.ConceptoRepository;
+import co.edu.unbosque.repository.ConceptoVisRepository;
 import co.edu.unbosque.service.api.ConceptoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
 
@@ -22,6 +25,9 @@ public class ConceptoRestController {
 
 	@Autowired
 	private ConceptoServiceAPI conceptoServiceAPI;
+	
+	@Autowired
+	private ConceptoVisRepository conceptoVisRepository;
 
 	@GetMapping(value = "/getAll")
 	public List<Concepto> getAll() {
@@ -56,4 +62,10 @@ public class ConceptoRestController {
 		return new ResponseEntity<Concepto>(concepto, HttpStatus.OK);
 
 	}
+	@GetMapping(value = "/obtener")
+	public List<ConceptoVis> obtener() {
+		return conceptoVisRepository.obtenerConceptos();
+	}
+
+	
 }
