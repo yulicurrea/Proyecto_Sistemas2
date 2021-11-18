@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Presupuesto;
+import co.edu.unbosque.model.PresupuestoVis;
+import co.edu.unbosque.repository.PresupuestoVisRepository;
 import co.edu.unbosque.service.api.PresupuestoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
 
@@ -20,6 +22,9 @@ import co.edu.unbosque.utils.ResourceNotFoundException;
 @RequestMapping("/presupuestos")
 public class PresupuestoRestController {
 
+	@Autowired
+	private PresupuestoVisRepository presupuestoVisRepository;
+	
 	@Autowired
 	private PresupuestoServiceAPI presupuestoServiceAPI;
 
@@ -55,5 +60,10 @@ public class PresupuestoRestController {
 		}
 		return new ResponseEntity<Presupuesto>(presupuesto, HttpStatus.OK);
 
+	}
+	
+	@GetMapping(value = "/obtenerPre")
+	public List<PresupuestoVis> obtenerPre() {
+		return presupuestoVisRepository.obtenerPresupuesto();
 	}
 }

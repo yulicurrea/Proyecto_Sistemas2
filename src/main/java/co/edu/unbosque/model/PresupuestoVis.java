@@ -1,41 +1,31 @@
 package co.edu.unbosque.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "presupuesto")
-public class Presupuesto {
+public class PresupuestoVis {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	@Column(name = "id_concepto", nullable = false)
-	private long id_concepto;
-	@Column(name = "anio", nullable = false)
+	private int id;
+	private String categoria;
+	private String concepto;
 	private Integer anio;
-	@Column(name = "ppto_asignado", nullable = false)
 	private double ppto_asignado;
-	@Column(name = "porce_ppto_alcanzado", nullable = false)
 	private double porce_ppto_alcanzado;
-	@Column(name = "ppto_alcanzado")
 	private double ppto_alcanzado;
-	@Column(name = "ppto_restante", nullable = false)
 	private double ppto_restante;
 
-	public Presupuesto() {
+	public PresupuestoVis() {
 
 	}
 
-	public Presupuesto(long id, long id_concepto, Integer anio, double ppto_asignado, double porce_ppto_alcanzado,
-			double ppto_alcanzado, double ppto_restante) {
+	public PresupuestoVis(int id, String categoria, String concepto, Integer anio, double ppto_asignado,
+			double porce_ppto_alcanzado, double ppto_alcanzado, double ppto_restante) {
 		super();
 		this.id = id;
-		this.id_concepto = id_concepto;
+		this.categoria = categoria;
+		this.concepto = concepto;
 		this.anio = anio;
 		this.ppto_asignado = ppto_asignado;
 		this.porce_ppto_alcanzado = porce_ppto_alcanzado;
@@ -43,20 +33,28 @@ public class Presupuesto {
 		this.ppto_restante = ppto_restante;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public long getId_concepto() {
-		return id_concepto;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setId_concepto(long id_concepto) {
-		this.id_concepto = id_concepto;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
 	}
 
 	public Integer getAnio() {
