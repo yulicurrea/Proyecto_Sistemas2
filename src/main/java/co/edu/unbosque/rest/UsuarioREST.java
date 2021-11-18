@@ -42,6 +42,7 @@ public class UsuarioREST {
 		}
 	}
 
+	/*
 	@PostMapping("login/")
 	private ResponseEntity<Boolean> login(@RequestBody Login user) {
 		try {
@@ -50,6 +51,7 @@ public class UsuarioREST {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	*/
 
 	/*
 	 * @GetMapping("/{id}") public Usuario getUsuario(@PathVariable Long id) {
