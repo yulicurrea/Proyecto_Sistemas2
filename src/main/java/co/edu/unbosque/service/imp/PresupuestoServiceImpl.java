@@ -10,11 +10,11 @@ import co.edu.unbosque.service.api.PresupuestoServiceAPI;
 import co.edu.unbosque.utils.GenericServiceImpl;
 
 @Service
-public class PresupuestoServiceImpl extends GenericServiceImpl<Presupuesto, Long>  implements PresupuestoServiceAPI{
+public class PresupuestoServiceImpl extends GenericServiceImpl<Presupuesto, Long> implements PresupuestoServiceAPI {
 
 	@Autowired
 	private PresupuestoRepository presupuestoDaoAPI;
-	
+
 	@Override
 	public CrudRepository<Presupuesto, Long> getDao() {
 		return presupuestoDaoAPI;
