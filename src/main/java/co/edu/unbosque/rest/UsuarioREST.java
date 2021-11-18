@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.service.UsuarioService;
 
@@ -40,7 +42,6 @@ public class UsuarioREST {
 		}
 	}
 
-	/*
 	@PostMapping("login/")
 	private ResponseEntity<Boolean> login(@RequestBody Login user) {
 		try {
@@ -49,7 +50,11 @@ public class UsuarioREST {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	*/
+
+	/*
+	 * @GetMapping("/{id}") public Usuario getUsuario(@PathVariable Long id) {
+	 * return personaService.getPersonaPorId(id); }
+	 */
 
 	// @Secured({"ROLE_USER","ROLE_ADMIN"})
 	@GetMapping
