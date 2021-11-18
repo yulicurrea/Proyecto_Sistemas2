@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unbosque.model.Concepto;
 import co.edu.unbosque.model.ConceptoVis;
 import co.edu.unbosque.repository.ConceptoRepository;
+import co.edu.unbosque.repository.ConceptoVisRepository;
 import co.edu.unbosque.service.api.ConceptoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
 
@@ -26,7 +27,7 @@ public class ConceptoRestController {
 	private ConceptoServiceAPI conceptoServiceAPI;
 	
 	@Autowired
-	private ConceptoRepository conceptoRepository;
+	private ConceptoVisRepository conceptoVisRepository;
 
 	@GetMapping(value = "/getAll")
 	public List<Concepto> getAll() {
@@ -63,7 +64,7 @@ public class ConceptoRestController {
 	}
 	@GetMapping(value = "/obtener")
 	public List<ConceptoVis> obtener() {
-		return conceptoRepository.obtenerConceptos();
+		return conceptoVisRepository.obtenerConceptos();
 	}
 
 	
