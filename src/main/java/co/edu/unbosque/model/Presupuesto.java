@@ -19,7 +19,7 @@ public class Presupuesto {
 	@Column(name = "id_concepto", nullable = false)
 	private long id_concepto;
 	@Column(name = "anio", nullable = false)
-	private Date anio;
+	private Integer anio;
 	@Column(name = "ppto_asignado", nullable = false)
 	private double ppto_asignado;
 	@Column(name = "porce_ppto_alcanzado", nullable = false)
@@ -34,7 +34,7 @@ public class Presupuesto {
 		
 	}
 	
-	public Presupuesto(long id, long id_concepto, Date anio, double ppto_asignado, double porce_ppto_alcanzado,
+	public Presupuesto(long id, long id_concepto, Integer anio, double ppto_asignado, double porce_ppto_alcanzado,
 			double ppto_alcanzado, double ppto_restante) {
 		super();
 		this.id = id;
@@ -62,11 +62,11 @@ public class Presupuesto {
 		this.id_concepto = id_concepto;
 	}
 
-	public Date getAnio() {
+	public Integer getAnio() {
 		return anio;
 	}
 
-	public void setAnio(Date anio) {
+	public void setAnio(Integer anio) {
 		this.anio = anio;
 	}
 
