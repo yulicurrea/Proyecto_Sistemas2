@@ -25,6 +25,7 @@ public class Concepto {
 		this.id_categoria = id_categoria;
 		this.concepto = concepto;
 	}
+
 	public Concepto() {
 		
 	}

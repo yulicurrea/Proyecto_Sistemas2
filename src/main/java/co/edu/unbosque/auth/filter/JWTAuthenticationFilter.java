@@ -23,9 +23,8 @@ import co.edu.unbosque.auth.service.JWTService;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.util.CommonVar;
 
-
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-	
+
 	private AuthenticationManager authenticationManager;
 	private JWTService jwtService;
 
@@ -34,7 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		this.jwtService = jwtService;
 	}
-	
+
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
@@ -70,7 +69,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		return authenticationManager.authenticate(authToken);
 	}
-	
+
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
@@ -93,7 +92,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
 
-		Map<String, Object> body = new HashMap<String, Object>();		
+		Map<String, Object> body = new HashMap<String, Object>();
 		body.put("error", failed.getMessage().replaceAll("\\s", "_").toUpperCase());
 
 		response.getWriter().write(new ObjectMapper().writeValueAsString(body));
@@ -102,7 +101,5 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 	}
-
-	
 
 }

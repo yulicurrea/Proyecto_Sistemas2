@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import co.edu.unbosque.auth.service.JWTService;
 import co.edu.unbosque.util.CommonVar;
 
-
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	private JWTService jwtService;
@@ -42,15 +41,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 						jwtService.getAuthorities(header));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				chain.doFilter(request, response);
-			}
-			else {
+			} else {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				response.setStatus(401);
-				response.addHeader("Access-Control-Allow-Origin", "*");			
+				response.addHeader("Access-Control-Allow-Origin", "*");
 
 			}
-			
-			
+
 		}
 	}
 

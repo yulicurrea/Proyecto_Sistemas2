@@ -1,8 +1,6 @@
 package co.edu.unbosque.service;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,16 +17,16 @@ public class UsuarioService {
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@Autowired
 	private UsuarioRepository personaResporitory;
 
 	public Usuario create(Usuario persona) {
-		
+
 		persona.setClave(encoder.encode(persona.getClave()));
-		
+
 		persona.setEdad(Utils.obtenerEdad(persona.getFechaNacimiento()));
-		
+
 		return personaResporitory.save(persona);
 	}
 

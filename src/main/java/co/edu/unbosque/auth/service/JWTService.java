@@ -1,6 +1,5 @@
 package co.edu.unbosque.auth.service;
 
-
 import java.io.IOException;
 import java.util.Collection;
 
@@ -10,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import io.jsonwebtoken.Claims;
 
 public interface JWTService {
-	
+
 	/**
 	 * Crea un token que contiene el nombre del usuario y sus credenciales
 	 * 

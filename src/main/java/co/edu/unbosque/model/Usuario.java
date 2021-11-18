@@ -2,19 +2,10 @@ package co.edu.unbosque.model;
 
 import java.util.Date;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
-
-import org.apache.commons.codec.binary.Hex;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,18 +16,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Usuario {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String clave;
 	private Integer edad;
-	
+
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 	private String nombre;
 	private String apellido;
 	private String rol;
 	private String usuario;
-	
+
 	public Usuario() {
 
 	}
@@ -55,8 +46,6 @@ public class Usuario {
 
 	}
 
-	
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -122,6 +111,5 @@ public class Usuario {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-
 
 }

@@ -4,7 +4,7 @@ public class Login {
 
 	private String usuario;
 	private String clave;
-	
+
 	public Login() {
 		// TODO Auto-generated constructor stub
 	}
@@ -30,6 +30,5 @@ public class Login {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-	
-	
+
 }

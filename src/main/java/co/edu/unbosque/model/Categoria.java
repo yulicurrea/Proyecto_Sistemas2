@@ -22,9 +22,11 @@ public class Categoria {
 		this.id = id;
 		this.categoria = categoria;
 	}
-public Categoria() {
-	
-}
+
+	public Categoria() {
+
+	}
+
 	public long getId() {
 		return id;
 	}
