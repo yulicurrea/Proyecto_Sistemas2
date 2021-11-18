@@ -26,6 +26,9 @@ public class Concepto {
 		this.concepto = concepto;
 	}
 
+	public Concepto() {
+		
+	}
 	public long getId() {
 		return id;
 	}

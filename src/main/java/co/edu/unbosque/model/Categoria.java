@@ -23,6 +23,9 @@ public class Categoria {
 		this.categoria = categoria;
 	}
 
+public Categoria() {
+	
+}
 	public long getId() {
 		return id;
 	}
