@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Presupuesto;
 import co.edu.unbosque.model.PresupuestoVis;
+import co.edu.unbosque.model.dto.PresupuestoDTO;
 import co.edu.unbosque.repository.PresupuestoVisRepository;
 import co.edu.unbosque.service.api.PresupuestoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
@@ -67,5 +68,10 @@ public class PresupuestoRestController {
 	@GetMapping(value = "/obtenerPre")
 	public List<PresupuestoVis> obtenerPre() {
 		return presupuestoVisRepository.obtenerPresupuesto();
+	}
+	
+	@GetMapping(value = "/obtenerPre/{idCategoria}")
+	public PresupuestoDTO obtenerPre(@PathVariable Long idCategoria) {
+		return presupuestoServiceAPI.obtenerPresupuestoPorCategoria(idCategoria);
 	}
 }
