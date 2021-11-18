@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.Presupuesto;
 import co.edu.unbosque.model.PresupuestoVis;
+import co.edu.unbosque.model.dto.PresupuestoDTO;
 import co.edu.unbosque.repository.ConceptoRepository;
 import co.edu.unbosque.repository.PresupuestoRepository;
 import co.edu.unbosque.repository.PresupuestoVisRepository;
@@ -79,5 +80,10 @@ public class PresupuestoRestController {
 	}
 	public long validarPresupuesto(long l,int anio) {
 		return presupuestoRepository.validarAsignacionPresupuesto(l,anio);
+	}
+	
+	@GetMapping(value = "/obtenerPre/{idCategoria}")
+	public PresupuestoDTO obtenerPre(@PathVariable Long idCategoria) {
+		return presupuestoServiceAPI.obtenerPresupuestoPorCategoria(idCategoria);
 	}
 }
