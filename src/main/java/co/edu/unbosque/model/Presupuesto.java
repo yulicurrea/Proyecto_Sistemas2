@@ -27,10 +27,10 @@ public class Presupuesto {
 	private double ppto_alcanzado;
 	@Column(name = "ppto_restante", nullable = false)
 	private double ppto_restante;
-	@Column(name = "periodo")
+	@Column(name = "periodo" ,nullable = true)
 	private String periodo;
 	
-
+	
 	public Presupuesto(long id, long id_concepto, int anio, double ppto_asignado, double porce_ppto_alcanzado,
 			double ppto_alcanzado, double ppto_restante, String periodo) {
 		super();
