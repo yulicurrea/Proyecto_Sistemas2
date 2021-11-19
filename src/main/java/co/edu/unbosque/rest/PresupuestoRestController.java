@@ -45,7 +45,7 @@ public class PresupuestoRestController {
 
 	@PostMapping(value = "/savePresupuesto")
 	public ResponseEntity<Presupuesto> save(@RequestBody Presupuesto presupuesto) {
-		Presupuesto obj = new Presupuesto(-1,-1, 0, 0, 0, 0, 0,"");
+		Presupuesto obj = new Presupuesto(-1,-1, 0, 0, 0, 0, 0);
 		if(validarPresupuesto(presupuesto.getId_concepto(),presupuesto.getAnio())==0) {
 			obj= presupuestoServiceAPI.save(presupuesto);
 		}
