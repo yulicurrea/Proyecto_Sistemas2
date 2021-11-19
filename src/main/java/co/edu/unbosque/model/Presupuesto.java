@@ -27,12 +27,11 @@ public class Presupuesto {
 	private double ppto_alcanzado;
 	@Column(name = "ppto_restante", nullable = false)
 	private double ppto_restante;
-	@Column(name = "periodo" ,nullable = true)
-	private String periodo;
+	
 	
 	
 	public Presupuesto(long id, long id_concepto, int anio, double ppto_asignado, double porce_ppto_alcanzado,
-			double ppto_alcanzado, double ppto_restante, String periodo) {
+			double ppto_alcanzado, double ppto_restante) {
 		super();
 		this.id = id;
 		this.id_concepto = id_concepto;
@@ -41,7 +40,7 @@ public class Presupuesto {
 		this.porce_ppto_alcanzado = porce_ppto_alcanzado;
 		this.ppto_alcanzado = ppto_alcanzado;
 		this.ppto_restante = ppto_restante;
-		this.periodo = periodo;
+		
 	}
 	public Presupuesto() {
 		
@@ -88,11 +87,4 @@ public class Presupuesto {
 	public void setPpto_restante(double ppto_restante) {
 		this.ppto_restante = ppto_restante;
 	}
-	public String getPeriodo() {
-		return periodo;
-	}
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
-	}
-
 }

@@ -15,14 +15,14 @@ public class PresupuestoVis {
 	private double porce_ppto_alcanzado;
 	private double ppto_alcanzado;
 	private double ppto_restante;
-	private String periodo;
+	
 
 	public PresupuestoVis() {
 
 	}
 
 	public PresupuestoVis(int id, String categoria, String concepto, Integer anio, double ppto_asignado,
-			double porce_ppto_alcanzado, double ppto_alcanzado, double ppto_restante,String periodo) {
+			double porce_ppto_alcanzado, double ppto_alcanzado, double ppto_restante) {
 		super();
 		this.id = id;
 		this.categoria = categoria;
@@ -32,7 +32,7 @@ public class PresupuestoVis {
 		this.porce_ppto_alcanzado = porce_ppto_alcanzado;
 		this.ppto_alcanzado = ppto_alcanzado;
 		this.ppto_restante = ppto_restante;
-		this.periodo = periodo;
+		
 	}
 
 	public int getId() {
@@ -99,12 +99,4 @@ public class PresupuestoVis {
 		this.ppto_restante = ppto_restante;
 	}
 
-	public String getPeriodo() {
-		return periodo;
-	}
-
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
-	}
-	
 }
