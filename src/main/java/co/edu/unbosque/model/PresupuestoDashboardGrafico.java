@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class PresupuestoDashboard {
+public class PresupuestoDashboardGrafico {
 
 	@Id
 	private long id;
@@ -12,7 +12,7 @@ public class PresupuestoDashboard {
 	private double ppto_asignado;
 	private double ppto_alcanzado;
 
-	public PresupuestoDashboard() {
+	public PresupuestoDashboardGrafico() {
 
 	}
 
