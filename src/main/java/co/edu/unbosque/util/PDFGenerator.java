@@ -113,7 +113,7 @@ public class PDFGenerator {
 			anio.setHorizontalAlignment(Element.ALIGN_LEFT);
 			table.addCell(anio);
 
-			PdfPCell ppto_asignado = new PdfPCell(new Phrase(formatValue(pre.getPpto_asignado(), "%.0f")));
+			PdfPCell ppto_asignado = new PdfPCell(new Phrase(formatValue(pre.getPpto_asignado(), "$%,.0f")));
 			ppto_asignado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			ppto_asignado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			ppto_asignado.setPaddingRight(4);
@@ -125,13 +125,13 @@ public class PDFGenerator {
 			porce_ppto_alcanzado.setPaddingRight(4);
 			table.addCell(porce_ppto_alcanzado);
 
-			PdfPCell ppto_alcanzado = new PdfPCell(new Phrase(formatValue(pre.getPpto_alcanzado(), "%.0f")));
+			PdfPCell ppto_alcanzado = new PdfPCell(new Phrase(formatValue(pre.getPpto_alcanzado(), "$%,.0f")));
 			ppto_alcanzado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			ppto_alcanzado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			ppto_alcanzado.setPaddingRight(4);
 			table.addCell(ppto_alcanzado);
 
-			PdfPCell ppto_restante = new PdfPCell(new Phrase(formatValue(pre.getPpto_restante(), "%.0f")));
+			PdfPCell ppto_restante = new PdfPCell(new Phrase(formatValue(pre.getPpto_restante(), "$%,.0f")));
 			ppto_restante.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			ppto_restante.setHorizontalAlignment(Element.ALIGN_RIGHT);
 			ppto_restante.setPaddingRight(4);
@@ -157,7 +157,7 @@ public class PDFGenerator {
 		table.addCell(ppto_asignado);
 
 		PdfPCell porce_ppto_alcanzado = new PdfPCell(
-				new Phrase(formatValue(presupuestoDTO.getTotalPorcentajeEjecucion(), "%.3f")));
+				new Phrase(formatValue(presupuestoDTO.getTotalPorcentajeEjecucion(), "%.2f")));
 		porce_ppto_alcanzado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		porce_ppto_alcanzado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		porce_ppto_alcanzado.setPaddingRight(4);
