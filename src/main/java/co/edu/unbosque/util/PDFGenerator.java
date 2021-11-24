@@ -42,7 +42,7 @@ public class PDFGenerator {
 			document.add(para);
 			document.add(Chunk.NEWLINE);
         	
-        	PdfPTable table = new PdfPTable(3);
+        	PdfPTable table = new PdfPTable(6);
         	// Add PDF Table Header ->
 			Stream.of("Concepto", "Año", "Presupuesto Asignado","%Presupuesto Alcanzado","Presupuesto Alcanzado"
 					,"Presupuesto restante")
@@ -57,13 +57,13 @@ public class PDFGenerator {
 			    });
             
             for (Presupuesto pre : presupuesto) {
-            	PdfPCell concepto = new PdfPCell(new Phrase(pre.getId_concepto()));
+            	PdfPCell concepto = new PdfPCell(new Phrase(String.valueOf(pre.getId_concepto())));
             	concepto.setPaddingLeft(4);
             	concepto.setVerticalAlignment(Element.ALIGN_MIDDLE);
             	concepto.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(concepto);
 
-                PdfPCell anio = new PdfPCell(new Phrase(pre.getAnio()));
+                PdfPCell anio = new PdfPCell(new Phrase(String.valueOf(pre.getAnio())));
                 anio.setPaddingLeft(4);
                 anio.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 anio.setHorizontalAlignment(Element.ALIGN_LEFT);
