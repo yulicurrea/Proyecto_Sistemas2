@@ -19,14 +19,14 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-
+import co.edu.unbosque.model.Presupuesto;
 import co.edu.unbosque.model.PresupuestoVis;
 
 public class PDFGenerator {
 	
 	private static Logger logger = LoggerFactory.getLogger(PDFGenerator.class);
 	
-	public static ByteArrayInputStream customerPDFReport(List<PresupuestoVis> presupuesto) {
+	public static ByteArrayInputStream customerPDFReport(List<Presupuesto> presupuesto) {
 		Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         
@@ -37,14 +37,15 @@ public class PDFGenerator {
         	
 			// Add Text to PDF file ->
 			Font font = FontFactory.getFont(FontFactory.COURIER, 14, BaseColor.BLACK);
-			Paragraph para = new Paragraph( "Customer Table", font);
+			Paragraph para = new Paragraph("Plantilla Presupuesto", font);
 			para.setAlignment(Element.ALIGN_CENTER);
 			document.add(para);
 			document.add(Chunk.NEWLINE);
         	
         	PdfPTable table = new PdfPTable(3);
         	// Add PDF Table Header ->
-			Stream.of("ID", "First Name", "Last Name")
+			Stream.of("Concepto", "Año", "Presupuesto Asignado","%Presupuesto Alcanzado","Presupuesto Alcanzado"
+					,"Presupuesto restante")
 			    .forEach(headerTitle -> {
 			          PdfPCell header = new PdfPCell();
 			          Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
@@ -55,8 +56,8 @@ public class PDFGenerator {
 			          table.addCell(header);
 			    });
             
-            for (PresupuestoVis pre : presupuesto) {
-            	PdfPCell concepto = new PdfPCell(new Phrase(pre.getConcepto()));
+            for (Presupuesto pre : presupuesto) {
+            	PdfPCell concepto = new PdfPCell(new Phrase(pre.getId_concepto()));
             	concepto.setPaddingLeft(4);
             	concepto.setVerticalAlignment(Element.ALIGN_MIDDLE);
             	concepto.setHorizontalAlignment(Element.ALIGN_CENTER);

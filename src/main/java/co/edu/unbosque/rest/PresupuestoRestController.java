@@ -94,9 +94,9 @@ public class PresupuestoRestController {
 	
 	@GetMapping("/PDF")
     public ResponseEntity<InputStreamResource> customerReport() throws IOException {
-        List<PresupuestoVis> customers = (List<PresupuestoVis>) presupuestoVisRepository.findAll();
+        List<Presupuesto> Presupuesto = (List<Presupuesto>) presupuestoRepository.findAll();
 
-        ByteArrayInputStream bis = PDFGenerator.customerPDFReport(customers);
+        ByteArrayInputStream bis = PDFGenerator.customerPDFReport(Presupuesto);
         org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=Presupuesto.pdf");
 
