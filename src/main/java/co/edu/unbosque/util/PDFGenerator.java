@@ -26,7 +26,7 @@ public class PDFGenerator {
 	
 	private static Logger logger = LoggerFactory.getLogger(PDFGenerator.class);
 	
-	public static ByteArrayInputStream customerPDFReport(List<Presupuesto> presupuesto) {
+	public static ByteArrayInputStream customerPDFReport(List<PresupuestoVis> presupuesto) {
 		Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         
@@ -56,8 +56,8 @@ public class PDFGenerator {
 			          table.addCell(header);
 			    });
             
-            for (Presupuesto pre : presupuesto) {
-            	PdfPCell concepto = new PdfPCell(new Phrase(String.valueOf(pre.getId_concepto())));
+            for (PresupuestoVis pre : presupuesto) {
+            	PdfPCell concepto = new PdfPCell(new Phrase(pre.getConcepto()));
             	concepto.setPaddingLeft(4);
             	concepto.setVerticalAlignment(Element.ALIGN_MIDDLE);
             	concepto.setHorizontalAlignment(Element.ALIGN_CENTER);
