@@ -32,6 +32,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import co.edu.unbosque.model.Presupuesto;
 import co.edu.unbosque.model.PresupuestoVis;
+import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.model.dto.PresupuestoDTO;
 import co.edu.unbosque.util.itext.CustomFooter;
 
@@ -41,9 +42,9 @@ public class PDFGenerator {
 	
 	
 	
-	public static ByteArrayInputStream customerPDFReport(PresupuestoDTO ingresos, PresupuestoDTO egresos) {
-		String usuario = "";// sacar de token o recibir de parametro
-		String empresa = "Documento impreso el día y hora:";
+	public static ByteArrayInputStream customerPDFReport(PresupuestoDTO ingresos, PresupuestoDTO egresos, Usuario usuario) {
+		
+	
 
 		// Document document = new Document(new Rectangle(1024,200),0,0,0,0);
 		Document document = new Document();
@@ -54,7 +55,7 @@ public class PDFGenerator {
 		try {
 
 			PdfWriter writer = PdfWriter.getInstance(document, out);
-			writer.setPageEvent(new CustomFooter(usuario, empresa));
+			writer.setPageEvent(new CustomFooter(usuario.getNombre() + " "+ usuario.getApellido()));
 
 			document.open();
 
@@ -151,6 +152,7 @@ public class PDFGenerator {
 
 
 		PdfPCell ppto_asignado = new PdfPCell(new Phrase(formatValue(presupuestoDTO.getTotalPresupuesto(), "$%,.0f")));
+		ppto_asignado.setBackgroundColor(fondo);
 		ppto_asignado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		ppto_asignado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		ppto_asignado.setPaddingRight(4);
@@ -158,18 +160,21 @@ public class PDFGenerator {
 
 		PdfPCell porce_ppto_alcanzado = new PdfPCell(
 				new Phrase(formatValue(presupuestoDTO.getTotalPorcentajeEjecucion(), "%.2f")));
+		porce_ppto_alcanzado.setBackgroundColor(fondo);
 		porce_ppto_alcanzado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		porce_ppto_alcanzado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		porce_ppto_alcanzado.setPaddingRight(4);
 		table.addCell(porce_ppto_alcanzado);
 
 		PdfPCell ppto_alcanzado = new PdfPCell(new Phrase(formatValue(presupuestoDTO.getTotalEjecutado(), "$%,.0f")));
+		ppto_alcanzado.setBackgroundColor(fondo);
 		ppto_alcanzado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		ppto_alcanzado.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		ppto_alcanzado.setPaddingRight(4);
 		table.addCell(ppto_alcanzado);
 
 		PdfPCell ppto_restante = new PdfPCell(new Phrase(formatValue(presupuestoDTO.getTotalFaltante(), "$%,.0f")));
+		ppto_restante.setBackgroundColor(fondo);
 		ppto_restante.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		ppto_restante.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		ppto_restante.setPaddingRight(4);
