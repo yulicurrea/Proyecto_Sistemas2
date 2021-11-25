@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.unbosque.model.PresupuestoDashBoardPorcentaje;
 import co.edu.unbosque.model.PresupuestoDashboardGrafico;
 import co.edu.unbosque.model.PresupuestoDashboardGraficoTotales;
 import co.edu.unbosque.repository.DashboardGraficoPptoRepository;
 import co.edu.unbosque.repository.DashboardGraficoPptoTotalesRepository;
+import co.edu.unbosque.repository.PresupuestoDashBoardPorcentajeRepository;
 
 @RestController
 @RequestMapping("api/dashboard")
@@ -22,6 +24,9 @@ public class DashboardRestController {
 	
 	@Autowired
 	private DashboardGraficoPptoTotalesRepository dashboardGraficoPptoTotalesRepository;
+	
+	@Autowired
+	private PresupuestoDashBoardPorcentajeRepository boardPorcentajeRepository;
 
 	@GetMapping(value = "/datosDashPpto/{id}")
 	public List<PresupuestoDashboardGrafico> obtenerDatosPresupuestoDash(@PathVariable Long id) {
@@ -33,4 +38,8 @@ public class DashboardRestController {
 		return dashboardGraficoPptoTotalesRepository.obtenerDatosDashPresupuestoTotales(id);
 	}
 	
+	@GetMapping(value = "/datosDashPorcentaje/{id}")
+	public List<PresupuestoDashBoardPorcentaje> obtenerDatosBoardPorcentajes(@PathVariable Long id){
+		return boardPorcentajeRepository.obtenerDatosDashPresupuestoPorcentaje(id);
+	}
 }
