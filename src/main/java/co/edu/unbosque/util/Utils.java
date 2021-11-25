@@ -1,6 +1,7 @@
 package co.edu.unbosque.util;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
@@ -37,5 +38,12 @@ public class Utils {
 	public static String formatearCalendar(Calendar c) {
 		DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault());
 		return df.format(c.getTime());
+	}
+	
+	public static String dateToPattern() {
+		String pattern = "dd-MM-yyyy HH:mm:ss";
+		
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		return df.format(new Date());
 	}
 }

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Concepto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(name = "id_categoria", nullable = false)
 	private long id_categoria;
@@ -26,6 +26,9 @@ public class Concepto {
 		this.concepto = concepto;
 	}
 
+	public Concepto() {
+		
+	}
 	public long getId() {
 		return id;
 	}

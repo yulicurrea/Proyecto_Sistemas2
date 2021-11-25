@@ -15,6 +15,7 @@ public class PresupuestoVis {
 	private double porce_ppto_alcanzado;
 	private double ppto_alcanzado;
 	private double ppto_restante;
+	
 
 	public PresupuestoVis() {
 
@@ -31,6 +32,7 @@ public class PresupuestoVis {
 		this.porce_ppto_alcanzado = porce_ppto_alcanzado;
 		this.ppto_alcanzado = ppto_alcanzado;
 		this.ppto_restante = ppto_restante;
+		
 	}
 
 	public int getId() {

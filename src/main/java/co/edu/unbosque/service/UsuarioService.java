@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import co.edu.unbosque.model.Login;
 import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.repository.UsuarioRepository;
 import co.edu.unbosque.util.Utils;
@@ -28,21 +25,6 @@ public class UsuarioService {
 		persona.setEdad(Utils.obtenerEdad(persona.getFechaNacimiento()));
 
 		return personaResporitory.save(persona);
-	}
-
-	public boolean login(Login user) {
-		boolean aux = false;
-		for (int i = 0; i < personaResporitory.findAll().size(); i++) {
-			if (personaResporitory.findAll().get(i).getUsuario().equals(user.getUsuario())) {
-				if (user.getClave().equals(personaResporitory.findAll().get(i).getClave())) {
-					aux = true;
-					break;
-				} else {
-					aux = false;
-				}
-			}
-		}
-		return aux;
 	}
 
 	public List<Usuario> getAllPersonas() {
