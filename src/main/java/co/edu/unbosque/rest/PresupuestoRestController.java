@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import co.edu.unbosque.model.Presupuesto;
 import co.edu.unbosque.model.PresupuestoVis;
+import co.edu.unbosque.model.Usuario;
 import co.edu.unbosque.model.dto.PresupuestoDTO;
 import co.edu.unbosque.repository.PresupuestoRepository;
 import co.edu.unbosque.repository.PresupuestoVisRepository;
+import co.edu.unbosque.service.SessionService;
+import co.edu.unbosque.service.UsuarioService;
 import co.edu.unbosque.service.api.PresupuestoServiceAPI;
 import co.edu.unbosque.util.PDFGenerator;
 import co.edu.unbosque.utils.ResourceNotFoundException;
@@ -40,6 +43,13 @@ public class PresupuestoRestController {
 
 	@Autowired
 	private PresupuestoRepository presupuestoRepository;
+	
+	@Autowired
+	private SessionService sessionService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	
 	@GetMapping(value = "/getAll")
 	public List<Presupuesto> getAll() {
@@ -94,12 +104,13 @@ public class PresupuestoRestController {
 	
 	@GetMapping("/PDF")
     public ResponseEntity<InputStreamResource> customerReport() throws IOException {
-        List<PresupuestoVis> Presupuesto = (List<PresupuestoVis>) presupuestoVisRepository.obtenerPresupuesto();
+        String username =  sessionService.getUserName();
         
-        Long idCategoria = (long) 1;
-        PresupuestoDTO ingresos = presupuestoServiceAPI.obtenerPresupuestoPorCategoria(idCategoria);
+        Usuario usuario = usuarioService.findByUsuario(username);
+        
+        PresupuestoDTO ingresos = presupuestoServiceAPI.obtenerPresupuestoPorCategoria((long) 1);
         PresupuestoDTO egresos = presupuestoServiceAPI.obtenerPresupuestoPorCategoria((long) 2);
-        ByteArrayInputStream bis = PDFGenerator.customerPDFReport(ingresos, egresos);
+        ByteArrayInputStream bis = PDFGenerator.customerPDFReport(ingresos, egresos, usuario);
         
         org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=Presupuesto.pdf");
