@@ -47,4 +47,7 @@ public class UsuarioService {
 		return personaResporitory.getById(id);
 	}
 
+	public Usuario findByUsuario(String username) {
+		return personaResporitory.findByUsuario(username);
+	}
 }

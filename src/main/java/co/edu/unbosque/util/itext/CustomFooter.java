@@ -13,16 +13,14 @@ import co.edu.unbosque.util.Utils;
 public class CustomFooter extends PdfPageEventHelper{
 	
 	private String user;
-	private String company;
-	
-	public CustomFooter(String user, String company){
-		this.user = user;
-		this.company = company;
+		
+	public CustomFooter(String user){
+		this.user = user;		
 	}
 
-	 public void onEndPage(PdfWriter writer,Document document) {
+	 public void onEndPage(PdfWriter writer,Document document) {			
 		 PdfContentByte cb = writer.getDirectContent();
-		 Phrase footer = new Phrase(this.company + this.user + "  "+ Utils.dateToPattern());
+		 Phrase footer = new Phrase( "Documento impreso el día y hora: " +  Utils.dateToPattern() + " por " + this.user );
 		 
 		 ColumnText.showTextAligned(cb, Element.ALIGN_CENTER,
 				 footer,
