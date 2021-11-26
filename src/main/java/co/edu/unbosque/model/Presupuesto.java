@@ -17,7 +17,6 @@ public class Presupuesto {
 	@Column(name = "id_concepto", nullable = false)
 	private long id_concepto;
 	@Column(name = "anio", nullable = false)
-
 	private int anio;
 	@Column(name = "ppto_asignado", nullable = false)
 	private double ppto_asignado;
