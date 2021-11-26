@@ -39,12 +39,9 @@ import co.edu.unbosque.util.itext.CustomFooter;
 public class PDFGenerator {
 
 	private static Logger logger = LoggerFactory.getLogger(PDFGenerator.class);
-	
-	
-	
-	public static ByteArrayInputStream customerPDFReport(PresupuestoDTO ingresos, PresupuestoDTO egresos, Usuario usuario) {
-		
-	
+
+	public static ByteArrayInputStream customerPDFReport(PresupuestoDTO ingresos, PresupuestoDTO egresos,
+			Usuario usuario) {
 
 		// Document document = new Document(new Rectangle(1024,200),0,0,0,0);
 		Document document = new Document();
@@ -55,7 +52,7 @@ public class PDFGenerator {
 		try {
 
 			PdfWriter writer = PdfWriter.getInstance(document, out);
-			writer.setPageEvent(new CustomFooter(usuario.getNombre() + " "+ usuario.getApellido()));
+			writer.setPageEvent(new CustomFooter(usuario.getNombre() + " " + usuario.getApellido()));
 
 			document.open();
 
@@ -75,7 +72,25 @@ public class PDFGenerator {
 
 			document.add(new Paragraph("Egresos", font));
 			document.add(new Paragraph("\n"));
-			document.add(addTable(egresos));
+			PdfPTable tableEgresos = addTable(egresos);
+
+			
+	
+			PdfPCell total = footerCell("TOTAL INGRESOS - EGRESOS");
+			total.setColspan(2);
+			total.setHorizontalAlignment(Element.ALIGN_CENTER);
+			tableEgresos.addCell(total);
+
+			double totalpresupuestoAsignado = ingresos.getTotalPresupuesto() - egresos.getTotalPresupuesto();
+			double presupuestoAlcanzado = ingresos.getTotalEjecutado() - egresos.getTotalEjecutado();
+			double porcentaje = presupuestoAlcanzado / totalpresupuestoAsignado * 100;
+
+			tableEgresos.addCell(footerCell(formatValue(totalpresupuestoAsignado, "$%,.0f")));
+			tableEgresos.addCell(footerCell(formatValue(porcentaje)));
+			tableEgresos.addCell(footerCell(formatValue(presupuestoAlcanzado, "$%,.0f")));
+			tableEgresos.addCell(
+					footerCell(formatValue(ingresos.getTotalFaltante() - egresos.getTotalFaltante(), "$%,.0f")));
+			document.add(tableEgresos);
 
 			document.close();
 		} catch (DocumentException e) {
@@ -139,7 +154,7 @@ public class PDFGenerator {
 			table.addCell(ppto_restante);
 
 		}
-		
+
 		BaseColor fondo = WebColors.getRGBColor("#e6e6e6");
 
 		PdfPCell concepto = new PdfPCell(new Phrase("TOTAL"));
@@ -149,7 +164,6 @@ public class PDFGenerator {
 		concepto.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		concepto.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(concepto);
-
 
 		PdfPCell ppto_asignado = new PdfPCell(new Phrase(formatValue(presupuestoDTO.getTotalPresupuesto(), "$%,.0f")));
 		ppto_asignado.setBackgroundColor(fondo);
@@ -188,12 +202,12 @@ public class PDFGenerator {
 	}
 
 	private static String formatValue(double val, String format) {
-		
+
 		return String.format(format, val);
 	}
 
 	private static void addHeader(Document document, PdfWriter writer) {
-		// Agregar imagen	
+		// Agregar imagen
 		try {
 			Resource resource = new ClassPathResource("EPS.png");
 			Image img = Image.getInstance(resource.getURL());
@@ -205,6 +219,16 @@ public class PDFGenerator {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 		}
+	}
+
+	private static PdfPCell footerCell(String value) {
+		BaseColor fondo = WebColors.getRGBColor("#e6e6e6");
+		PdfPCell cell = new PdfPCell(new Phrase(value));
+		cell.setBackgroundColor(fondo);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		cell.setPaddingRight(4);
+		return cell;
 	}
 
 }
