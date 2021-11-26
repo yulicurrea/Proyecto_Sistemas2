@@ -76,20 +76,20 @@ public class PDFGenerator {
 
 			
 	
-			PdfPCell total = footerCell("TOTAL INGRESOS EGRESOS");
+			PdfPCell total = footerCell("TOTAL INGRESOS - EGRESOS");
 			total.setColspan(2);
 			total.setHorizontalAlignment(Element.ALIGN_CENTER);
 			tableEgresos.addCell(total);
 
-			double totalpresupuestoAsignado = ingresos.getTotalPresupuesto() + egresos.getTotalPresupuesto();
-			double presupuestoAlcanzado = ingresos.getTotalEjecutado() + egresos.getTotalEjecutado();
+			double totalpresupuestoAsignado = ingresos.getTotalPresupuesto() - egresos.getTotalPresupuesto();
+			double presupuestoAlcanzado = ingresos.getTotalEjecutado() - egresos.getTotalEjecutado();
 			double porcentaje = presupuestoAlcanzado / totalpresupuestoAsignado * 100;
 
 			tableEgresos.addCell(footerCell(formatValue(totalpresupuestoAsignado, "$%,.0f")));
 			tableEgresos.addCell(footerCell(formatValue(porcentaje)));
 			tableEgresos.addCell(footerCell(formatValue(presupuestoAlcanzado, "$%,.0f")));
 			tableEgresos.addCell(
-					footerCell(formatValue(ingresos.getTotalFaltante() + egresos.getTotalFaltante(), "$%,.0f")));
+					footerCell(formatValue(ingresos.getTotalFaltante() - egresos.getTotalFaltante(), "$%,.0f")));
 			document.add(tableEgresos);
 
 			document.close();
