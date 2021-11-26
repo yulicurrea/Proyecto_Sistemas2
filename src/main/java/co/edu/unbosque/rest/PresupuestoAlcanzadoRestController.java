@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.model.PresupuestoAlcanzado;
+import co.edu.unbosque.model.PresupuestoAlcanzadoVis;
 import co.edu.unbosque.repository.PresupuestoAlcanzadoRepository;
+import co.edu.unbosque.repository.PresupuestoAlcanzadoVisRepository;
 import co.edu.unbosque.service.api.PresupuestoAlcanzadoServiceAPI;
 import co.edu.unbosque.utils.ResourceNotFoundException;
 
@@ -29,6 +31,9 @@ public class PresupuestoAlcanzadoRestController {
 
 	@Autowired
 	private PresupuestoAlcanzadoRepository presupuestoAlcanzadoRepository;
+
+	@Autowired
+	private PresupuestoAlcanzadoVisRepository presupuestoAlcanzadoVisRepository;
 
 	@GetMapping(value = "/getAll")
 	public List<PresupuestoAlcanzado> getAll() {
@@ -69,6 +74,11 @@ public class PresupuestoAlcanzadoRestController {
 
 	public long validarPresupuestoAlcanzado(long id, String mes) {
 		return presupuestoAlcanzadoRepository.idPresupuesto(id, mes);
+	}
+
+	@GetMapping(value = "/obtenerLista/{id}")
+	public List<PresupuestoAlcanzadoVis> getListaPresupuesto(@PathVariable(value = "id") Long id) {
+		return presupuestoAlcanzadoVisRepository.listaPresupuestoAlcanzados(id);
 	}
 
 }

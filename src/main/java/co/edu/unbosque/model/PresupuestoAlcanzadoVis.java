@@ -8,7 +8,9 @@ public class PresupuestoAlcanzadoVis {
 
 	@Id
 	private int id;
-	private int id_presupuesto;
+	private String categoria;
+	private String concepto;
+	private String anio;
 	private String mes;
 	private double valor;
 
@@ -16,10 +18,12 @@ public class PresupuestoAlcanzadoVis {
 
 	}
 
-	public PresupuestoAlcanzadoVis(int id, int id_presupuesto, String mes, double valor) {
+	public PresupuestoAlcanzadoVis(int id, String categoria, String concepto, String anio, String mes, double valor) {
 		super();
 		this.id = id;
-		this.id_presupuesto = id_presupuesto;
+		this.categoria = categoria;
+		this.concepto = concepto;
+		this.anio = anio;
 		this.mes = mes;
 		this.valor = valor;
 	}
@@ -32,12 +36,28 @@ public class PresupuestoAlcanzadoVis {
 		this.id = id;
 	}
 
-	public int getId_presupuesto() {
-		return id_presupuesto;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setId_presupuesto(int id_presupuesto) {
-		this.id_presupuesto = id_presupuesto;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getConcepto() {
+		return concepto;
+	}
+
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
+
+	public String getAnio() {
+		return anio;
+	}
+
+	public void setAnio(String anio) {
+		this.anio = anio;
 	}
 
 	public String getMes() {
